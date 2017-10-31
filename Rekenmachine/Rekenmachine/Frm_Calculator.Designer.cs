@@ -1,6 +1,6 @@
 ﻿namespace Rekenmachine
 {
-    partial class Frm_Rekenmachine
+    partial class Frm_Calculator
     {
         /// <summary>
         /// Required designer variable.
@@ -47,14 +47,23 @@
             this.btDivide = new System.Windows.Forms.Button();
             this.btSubmit = new System.Windows.Forms.Button();
             this.btBackspace = new System.Windows.Forms.Button();
+            this.btOpenBracket = new System.Windows.Forms.Button();
+            this.btCloseBracket = new System.Windows.Forms.Button();
+            this.btDot = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbCalculation
             // 
+            this.tbCalculation.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tbCalculation.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbCalculation.Location = new System.Drawing.Point(13, 13);
             this.tbCalculation.Name = "tbCalculation";
-            this.tbCalculation.Size = new System.Drawing.Size(138, 20);
+            this.tbCalculation.ReadOnly = true;
+            this.tbCalculation.Size = new System.Drawing.Size(174, 20);
             this.tbCalculation.TabIndex = 0;
+            this.tbCalculation.Text = "0";
+            this.tbCalculation.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbCalculation.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbCalculation_KeyUp);
             // 
             // btClear
             // 
@@ -73,6 +82,7 @@
             this.btClearEntry.TabIndex = 2;
             this.btClearEntry.Text = "CE";
             this.btClearEntry.UseVisualStyleBackColor = true;
+            this.btClearEntry.Click += new System.EventHandler(this.btClearEntry_Click);
             // 
             // bt0
             // 
@@ -202,12 +212,13 @@
             // 
             // btSubmit
             // 
-            this.btSubmit.Location = new System.Drawing.Point(121, 184);
+            this.btSubmit.Location = new System.Drawing.Point(157, 39);
             this.btSubmit.Name = "btSubmit";
             this.btSubmit.Size = new System.Drawing.Size(30, 30);
             this.btSubmit.TabIndex = 17;
             this.btSubmit.Text = "=";
             this.btSubmit.UseVisualStyleBackColor = true;
+            this.btSubmit.Click += new System.EventHandler(this.btSubmit_Click);
             // 
             // btBackspace
             // 
@@ -218,11 +229,41 @@
             this.btBackspace.Text = "←";
             this.btBackspace.UseVisualStyleBackColor = true;
             // 
-            // Frm_Rekenmachine
+            // btOpenBracket
+            // 
+            this.btOpenBracket.Location = new System.Drawing.Point(85, 184);
+            this.btOpenBracket.Name = "btOpenBracket";
+            this.btOpenBracket.Size = new System.Drawing.Size(30, 30);
+            this.btOpenBracket.TabIndex = 19;
+            this.btOpenBracket.Text = "(";
+            this.btOpenBracket.UseVisualStyleBackColor = true;
+            // 
+            // btCloseBracket
+            // 
+            this.btCloseBracket.Location = new System.Drawing.Point(121, 184);
+            this.btCloseBracket.Name = "btCloseBracket";
+            this.btCloseBracket.Size = new System.Drawing.Size(30, 30);
+            this.btCloseBracket.TabIndex = 20;
+            this.btCloseBracket.Text = ")";
+            this.btCloseBracket.UseVisualStyleBackColor = true;
+            // 
+            // btDot
+            // 
+            this.btDot.Location = new System.Drawing.Point(13, 184);
+            this.btDot.Name = "btDot";
+            this.btDot.Size = new System.Drawing.Size(30, 30);
+            this.btDot.TabIndex = 21;
+            this.btDot.Text = ".";
+            this.btDot.UseVisualStyleBackColor = true;
+            // 
+            // Frm_Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(162, 219);
+            this.ClientSize = new System.Drawing.Size(193, 219);
+            this.Controls.Add(this.btDot);
+            this.Controls.Add(this.btCloseBracket);
+            this.Controls.Add(this.btOpenBracket);
             this.Controls.Add(this.btBackspace);
             this.Controls.Add(this.btSubmit);
             this.Controls.Add(this.btDivide);
@@ -242,8 +283,10 @@
             this.Controls.Add(this.btClearEntry);
             this.Controls.Add(this.btClear);
             this.Controls.Add(this.tbCalculation);
-            this.Name = "Frm_Rekenmachine";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "Frm_Calculator";
             this.Text = "Rekenmachine";
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Frm_Calculator_KeyUp);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,6 +313,9 @@
         private System.Windows.Forms.Button btDivide;
         private System.Windows.Forms.Button btSubmit;
         private System.Windows.Forms.Button btBackspace;
+        private System.Windows.Forms.Button btOpenBracket;
+        private System.Windows.Forms.Button btCloseBracket;
+        private System.Windows.Forms.Button btDot;
     }
 }
 

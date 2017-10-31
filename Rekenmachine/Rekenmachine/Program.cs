@@ -16,7 +16,7 @@ namespace Rekenmachine
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_Rekenmachine());
+            Application.Run(new Frm_Calculator());
         }
     }
 }
