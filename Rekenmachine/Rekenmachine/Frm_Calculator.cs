@@ -84,18 +84,19 @@ namespace Rekenmachine
 
         private void inputOperator(char op)
         {
-            if (tbInput.Text == String.Empty)
+            if (Double.IsNaN(Calculator.LastResult) || Double.IsInfinity(Calculator.LastResult))
             {
+                Clear();
+            }
+            if (tbInput.Text == String.Empty || !deletedResult)
+            {
+
                 Calculator.Number1 = Calculator.LastResult;
                 Calculator.LastOp = op;
                 deletedResult = true;
             }
             else
             {
-                if (Double.IsNaN(Calculator.LastResult) || Double.IsInfinity(Calculator.LastResult))
-                {
-                    Clear();
-                }
                 double input;
                 if (Double.TryParse(tbInput.Text, out input))
                 {
