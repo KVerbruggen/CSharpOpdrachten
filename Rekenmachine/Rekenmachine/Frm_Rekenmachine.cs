@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Rekenmachine
 {
-    public partial class Form1 : Form
+    public partial class Frm_Rekenmachine : Form
     {
-        public Form1()
+        public Frm_Rekenmachine()
         {
             InitializeComponent();
         }
