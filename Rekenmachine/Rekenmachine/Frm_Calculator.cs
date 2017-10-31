@@ -65,10 +65,19 @@ namespace Rekenmachine
 
         private void inputNumber(int input)
         {
-            if (tbInput.Text == "0" || !deletedResult)
+            if (Double.IsNaN(Calculator.LastResult) || Double.IsInfinity(Calculator.LastResult))
+            {
+                Clear();
+            }
+            if (tbInput.Text == "0")
             {
                 tbInput.Text = String.Empty;
+            }
+            if (!deletedResult)
+            {
+                Calculator.Clear();
                 deletedResult = true;
+                tbInput.Text = String.Empty;
             }
             tbInput.Text += input;
         }
@@ -83,6 +92,10 @@ namespace Rekenmachine
             }
             else
             {
+                if (Double.IsNaN(Calculator.LastResult) || Double.IsInfinity(Calculator.LastResult))
+                {
+                    Clear();
+                }
                 double input;
                 if (Double.TryParse(tbInput.Text, out input))
                 {
@@ -96,15 +109,19 @@ namespace Rekenmachine
 
         private void btClear_Click(object sender, EventArgs e)
         {
-            ClearEntry();
-            tbCalculation.Text = String.Empty;
-            Calculator.Clear();
+            Clear();
         }
         private void btClearEntry_Click(object sender, EventArgs e)
         {
             ClearEntry();
         }
 
+        private void Clear()
+        {
+            ClearEntry();
+            tbCalculation.Text = String.Empty;
+            Calculator.Clear();
+        }
         private void ClearEntry()
         {
             deletedResult = true;
@@ -118,6 +135,19 @@ namespace Rekenmachine
             if (Int32.TryParse(str_input, out input))
             {
                 inputNumber(input);
+            }
+        }
+
+        private void inputDot()
+        {
+            if (!tbInput.Text.Contains('.'))
+            {
+                if (tbInput.Text == String.Empty)
+                {
+                    tbInput.Text = "0";
+                }
+                tbInput.Text += '.';
+                deletedResult = true;
             }
         }
 
@@ -138,6 +168,11 @@ namespace Rekenmachine
             {
                 tbInput.Text = tbInput.Text.Substring(0, inputlength - 1);
             }
+        }
+
+        private void btDot_Click(object sender, EventArgs e)
+        {
+            inputDot();
         }
     }
 }

@@ -9,17 +9,17 @@ namespace Rekenmachine
     public static class Calculator
     {
         public static readonly char[] operators = new char[] { '+', '-', '×', '÷' };
-        public static int LastResult { get; private set; }
+        public static double LastResult { get; private set; }
         public static double Number1 { get; set; }
         public static double Number2 { get; set; }
-        public static char LastOp { get; set; }
+        public static char LastOp { get; set; } = '+';
 
         static Calculator()
         {
             LastResult = 0;
         }
 
-        public static int Calculate()
+        public static double Calculate()
         {
             switch (LastOp)
             {
@@ -41,7 +41,7 @@ namespace Rekenmachine
             return LastResult;
         }
 
-        public static int Repeat()
+        public static double Repeat()
         {
             Number1 = LastResult;
             switch (LastOp)

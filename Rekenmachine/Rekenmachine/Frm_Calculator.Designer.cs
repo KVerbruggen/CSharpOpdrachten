@@ -274,6 +274,7 @@
             this.btDot.TabIndex = 21;
             this.btDot.Text = ".";
             this.btDot.UseVisualStyleBackColor = true;
+            this.btDot.Click += new System.EventHandler(this.btDot_Click);
             // 
             // tbCalculation
             // 
