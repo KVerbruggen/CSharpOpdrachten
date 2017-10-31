@@ -13,25 +13,27 @@ namespace Rekenmachine
     
     public partial class Frm_Calculator : Form
     {
+        bool deletedResult = false;
+
         public Frm_Calculator()
         {
             InitializeComponent();
         }
 
-        private void btSubmit_Click(object sender, EventArgs e)
+        private void submit(object sender, EventArgs e)
         {
-            submitFormula();
+            submit();
         }
 
         private void Frm_Calculator_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter || e.KeyData == Keys.Return)
             {
-                submitFormula();
+                submit();
             }
         }
 
-        private void tbCalculation_KeyUp(object sender, KeyEventArgs e)
+        private void tbInput_KeyUp(object sender, KeyEventArgs e)
         {
             // TO-DO: Manual input
             switch (e.KeyData)
@@ -41,48 +43,101 @@ namespace Rekenmachine
             }
         }
 
-        private void submitFormula()
+        private void submit()
         {
-            tbCalculation.Text = "7+3";
-            tbCalculation.Text = Calculator.Calculate(tbCalculation.Text).ToString();
-        }
-
-        private bool inputAllowed(string formula, char c)
-        {
-            int number;
-            bool isNumber = Int32.TryParse(c.ToString(), out number);
-            char previousCharacter = formula[formula.Length - 1];
-            bool previousIsNumber = Int32.TryParse(c.ToString(), out number);
-            if (isNumber)
+            if (!deletedResult)
             {
-                if (previousIsNumber)
-                {
-                    return true;
-                }
-                switch (previousCharacter)
-                {
-                    case ')':
-                        return false;
-                    default:
-                        return true;
-                }
+                Calculator.Repeat();
             }
             else
             {
-                switch (c)
+                double input;
+                if (Double.TryParse(tbInput.Text, out input))
                 {
-                    case '(':
-                        return ("+-×÷".Contains(previousCharacter));
-                    default:
-                        return previousIsNumber;
+                    Calculator.Number2 = input;
+                    Calculator.Calculate();
                 }
             }
-
+            deletedResult = false;
+            tbCalculation.Text = Calculator.Number1 + " " + Calculator.LastOp + " " + Calculator.Number2 + " = ";
+            tbInput.Text = Calculator.LastResult.ToString();
         }
 
+        private void inputNumber(int input)
+        {
+            if (tbInput.Text == "0" || !deletedResult)
+            {
+                tbInput.Text = String.Empty;
+                deletedResult = true;
+            }
+            tbInput.Text += input;
+        }
+
+        private void inputOperator(char op)
+        {
+            if (tbInput.Text == String.Empty)
+            {
+                Calculator.Number1 = Calculator.LastResult;
+                Calculator.LastOp = op;
+                deletedResult = true;
+            }
+            else
+            {
+                double input;
+                if (Double.TryParse(tbInput.Text, out input))
+                {
+                    Calculator.Number1 = input;
+                }
+                Calculator.LastOp = op;
+            }
+            tbCalculation.Text = Calculator.Number1 + " " + Calculator.LastOp + " ";
+            tbInput.Text = String.Empty;
+        }
+
+        private void btClear_Click(object sender, EventArgs e)
+        {
+            ClearEntry();
+            tbCalculation.Text = String.Empty;
+            Calculator.Clear();
+        }
         private void btClearEntry_Click(object sender, EventArgs e)
         {
-            tbCalculation.Text = "0";
+            ClearEntry();
+        }
+
+        private void ClearEntry()
+        {
+            deletedResult = true;
+            tbInput.Text = "0";
+        }
+
+        private void inputNumber(object sender, EventArgs e)
+        {
+            string str_input = (sender as Button).Text;
+            int input;
+            if (Int32.TryParse(str_input, out input))
+            {
+                inputNumber(input);
+            }
+        }
+
+        private void inputOperator(object sender, EventArgs e)
+        {
+            string str_input = (sender as Button).Text;
+            char input = str_input[0];
+            if (Calculator.operators.Contains(input))
+            {
+                inputOperator(input);
+            }
+        }
+
+        private void btBackspace_Click(object sender, EventArgs e)
+        {
+            int inputlength = tbInput.Text.Length;
+            if (inputlength > 0)
+            {
+                tbInput.Text = tbInput.Text.Substring(0, inputlength - 1);
+            }
         }
     }
 }
