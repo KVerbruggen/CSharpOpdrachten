@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Formula.cs" />
     <Compile Include="Frm_Calculator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,7 +54,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Calculator.cs" />
     <EmbeddedResource Include="Frm_Calculator.resx">
       <DependentUpon>Frm_Calculator.cs</DependentUpon>
     </EmbeddedResource>

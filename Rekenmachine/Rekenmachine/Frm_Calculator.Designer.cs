@@ -50,7 +50,12 @@
             this.btOpenBracket = new System.Windows.Forms.Button();
             this.btCloseBracket = new System.Windows.Forms.Button();
             this.btDot = new System.Windows.Forms.Button();
-            this.tbCalculation = new System.Windows.Forms.TextBox();
+            this.tbFormula = new System.Windows.Forms.TextBox();
+            this.lbHistory = new System.Windows.Forms.ListBox();
+            this.btSquare = new System.Windows.Forms.Button();
+            this.btSqrt = new System.Windows.Forms.Button();
+            this.btInverse = new System.Windows.Forms.Button();
+            this.btInvolution = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbInput
@@ -62,7 +67,6 @@
             this.tbInput.ReadOnly = true;
             this.tbInput.Size = new System.Drawing.Size(174, 20);
             this.tbInput.TabIndex = 0;
-            this.tbInput.Text = "0";
             this.tbInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbInput.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbInput_KeyUp);
             // 
@@ -96,7 +100,7 @@
             this.bt0.TabIndex = 3;
             this.bt0.Text = "0";
             this.bt0.UseVisualStyleBackColor = true;
-            this.bt0.Click += new System.EventHandler(this.inputNumber);
+            this.bt0.Click += new System.EventHandler(this.bt0_Click);
             // 
             // bt1
             // 
@@ -107,7 +111,7 @@
             this.bt1.TabIndex = 4;
             this.bt1.Text = "1";
             this.bt1.UseVisualStyleBackColor = true;
-            this.bt1.Click += new System.EventHandler(this.inputNumber);
+            this.bt1.Click += new System.EventHandler(this.bt1_Click);
             // 
             // bt2
             // 
@@ -118,7 +122,7 @@
             this.bt2.TabIndex = 5;
             this.bt2.Text = "2";
             this.bt2.UseVisualStyleBackColor = true;
-            this.bt2.Click += new System.EventHandler(this.inputNumber);
+            this.bt2.Click += new System.EventHandler(this.bt2_Click);
             // 
             // bt3
             // 
@@ -129,7 +133,7 @@
             this.bt3.TabIndex = 6;
             this.bt3.Text = "3";
             this.bt3.UseVisualStyleBackColor = true;
-            this.bt3.Click += new System.EventHandler(this.inputNumber);
+            this.bt3.Click += new System.EventHandler(this.bt3_Click);
             // 
             // bt4
             // 
@@ -140,7 +144,7 @@
             this.bt4.TabIndex = 7;
             this.bt4.Text = "4";
             this.bt4.UseVisualStyleBackColor = true;
-            this.bt4.Click += new System.EventHandler(this.inputNumber);
+            this.bt4.Click += new System.EventHandler(this.bt4_Click);
             // 
             // bt5
             // 
@@ -151,7 +155,7 @@
             this.bt5.TabIndex = 8;
             this.bt5.Text = "5";
             this.bt5.UseVisualStyleBackColor = true;
-            this.bt5.Click += new System.EventHandler(this.inputNumber);
+            this.bt5.Click += new System.EventHandler(this.bt5_Click);
             // 
             // bt6
             // 
@@ -162,7 +166,7 @@
             this.bt6.TabIndex = 9;
             this.bt6.Text = "6";
             this.bt6.UseVisualStyleBackColor = true;
-            this.bt6.Click += new System.EventHandler(this.inputNumber);
+            this.bt6.Click += new System.EventHandler(this.bt6_Click);
             // 
             // bt7
             // 
@@ -173,7 +177,7 @@
             this.bt7.TabIndex = 10;
             this.bt7.Text = "7";
             this.bt7.UseVisualStyleBackColor = true;
-            this.bt7.Click += new System.EventHandler(this.inputNumber);
+            this.bt7.Click += new System.EventHandler(this.bt7_Click);
             // 
             // bt8
             // 
@@ -184,7 +188,7 @@
             this.bt8.TabIndex = 11;
             this.bt8.Text = "8";
             this.bt8.UseVisualStyleBackColor = true;
-            this.bt8.Click += new System.EventHandler(this.inputNumber);
+            this.bt8.Click += new System.EventHandler(this.bt8_Click);
             // 
             // bt9
             // 
@@ -195,7 +199,7 @@
             this.bt9.TabIndex = 12;
             this.bt9.Text = "9";
             this.bt9.UseVisualStyleBackColor = true;
-            this.bt9.Click += new System.EventHandler(this.inputNumber);
+            this.bt9.Click += new System.EventHandler(this.bt9_Click);
             // 
             // btAdd
             // 
@@ -206,7 +210,7 @@
             this.btAdd.TabIndex = 13;
             this.btAdd.Text = "+";
             this.btAdd.UseVisualStyleBackColor = true;
-            this.btAdd.Click += new System.EventHandler(this.inputOperator);
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
             // 
             // btSubtract
             // 
@@ -217,7 +221,7 @@
             this.btSubtract.TabIndex = 14;
             this.btSubtract.Text = "-";
             this.btSubtract.UseVisualStyleBackColor = true;
-            this.btSubtract.Click += new System.EventHandler(this.inputOperator);
+            this.btSubtract.Click += new System.EventHandler(this.btSubtract_Click);
             // 
             // btMultiply
             // 
@@ -228,7 +232,7 @@
             this.btMultiply.TabIndex = 15;
             this.btMultiply.Text = "×";
             this.btMultiply.UseVisualStyleBackColor = true;
-            this.btMultiply.Click += new System.EventHandler(this.inputOperator);
+            this.btMultiply.Click += new System.EventHandler(this.btMultiply_Click);
             // 
             // btDivide
             // 
@@ -239,18 +243,18 @@
             this.btDivide.TabIndex = 16;
             this.btDivide.Text = "÷";
             this.btDivide.UseVisualStyleBackColor = true;
-            this.btDivide.Click += new System.EventHandler(this.inputOperator);
+            this.btDivide.Click += new System.EventHandler(this.btDivide_Click);
             // 
             // btSubmit
             // 
             this.btSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btSubmit.Location = new System.Drawing.Point(156, 65);
+            this.btSubmit.Location = new System.Drawing.Point(157, 65);
             this.btSubmit.Name = "btSubmit";
             this.btSubmit.Size = new System.Drawing.Size(30, 30);
             this.btSubmit.TabIndex = 17;
             this.btSubmit.Text = "=";
             this.btSubmit.UseVisualStyleBackColor = true;
-            this.btSubmit.Click += new System.EventHandler(this.submit);
+            this.btSubmit.Click += new System.EventHandler(this.btSubmit_Click);
             // 
             // btBackspace
             // 
@@ -261,12 +265,11 @@
             this.btBackspace.TabIndex = 18;
             this.btBackspace.Text = "←";
             this.btBackspace.UseVisualStyleBackColor = true;
-            this.btBackspace.Click += new System.EventHandler(this.btBackspace_Click);
             // 
             // btOpenBracket
             // 
             this.btOpenBracket.Enabled = false;
-            this.btOpenBracket.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btOpenBracket.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btOpenBracket.Location = new System.Drawing.Point(84, 210);
             this.btOpenBracket.Name = "btOpenBracket";
             this.btOpenBracket.Size = new System.Drawing.Size(30, 30);
@@ -277,7 +280,7 @@
             // btCloseBracket
             // 
             this.btCloseBracket.Enabled = false;
-            this.btCloseBracket.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btCloseBracket.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btCloseBracket.Location = new System.Drawing.Point(120, 210);
             this.btCloseBracket.Name = "btCloseBracket";
             this.btCloseBracket.Size = new System.Drawing.Size(30, 30);
@@ -294,26 +297,78 @@
             this.btDot.TabIndex = 21;
             this.btDot.Text = ".";
             this.btDot.UseVisualStyleBackColor = true;
-            this.btDot.Click += new System.EventHandler(this.btDot_Click);
             // 
-            // tbCalculation
+            // tbFormula
             // 
-            this.tbCalculation.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.tbCalculation.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbCalculation.Enabled = false;
-            this.tbCalculation.Location = new System.Drawing.Point(12, 12);
-            this.tbCalculation.Name = "tbCalculation";
-            this.tbCalculation.ReadOnly = true;
-            this.tbCalculation.Size = new System.Drawing.Size(174, 20);
-            this.tbCalculation.TabIndex = 22;
-            this.tbCalculation.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbFormula.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tbFormula.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbFormula.Enabled = false;
+            this.tbFormula.Location = new System.Drawing.Point(12, 12);
+            this.tbFormula.Name = "tbFormula";
+            this.tbFormula.ReadOnly = true;
+            this.tbFormula.Size = new System.Drawing.Size(174, 20);
+            this.tbFormula.TabIndex = 22;
+            this.tbFormula.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lbHistory
+            // 
+            this.lbHistory.FormattingEnabled = true;
+            this.lbHistory.Location = new System.Drawing.Point(193, 12);
+            this.lbHistory.Name = "lbHistory";
+            this.lbHistory.Size = new System.Drawing.Size(120, 225);
+            this.lbHistory.TabIndex = 23;
+            // 
+            // btSquare
+            // 
+            this.btSquare.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btSquare.Location = new System.Drawing.Point(156, 137);
+            this.btSquare.Name = "btSquare";
+            this.btSquare.Size = new System.Drawing.Size(30, 30);
+            this.btSquare.TabIndex = 24;
+            this.btSquare.Text = "x²";
+            this.btSquare.UseVisualStyleBackColor = true;
+            // 
+            // btSqrt
+            // 
+            this.btSqrt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btSqrt.Location = new System.Drawing.Point(155, 174);
+            this.btSqrt.Name = "btSqrt";
+            this.btSqrt.Size = new System.Drawing.Size(31, 30);
+            this.btSqrt.TabIndex = 25;
+            this.btSqrt.Text = "√x";
+            this.btSqrt.UseVisualStyleBackColor = true;
+            // 
+            // btInverse
+            // 
+            this.btInverse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btInverse.Location = new System.Drawing.Point(155, 210);
+            this.btInverse.Name = "btInverse";
+            this.btInverse.Size = new System.Drawing.Size(31, 30);
+            this.btInverse.TabIndex = 26;
+            this.btInverse.Text = "1/x";
+            this.btInverse.UseVisualStyleBackColor = true;
+            // 
+            // btInvolution
+            // 
+            this.btInvolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btInvolution.Location = new System.Drawing.Point(156, 101);
+            this.btInvolution.Name = "btInvolution";
+            this.btInvolution.Size = new System.Drawing.Size(30, 30);
+            this.btInvolution.TabIndex = 27;
+            this.btInvolution.Text = "xⁿ";
+            this.btInvolution.UseVisualStyleBackColor = true;
             // 
             // Frm_Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(193, 254);
-            this.Controls.Add(this.tbCalculation);
+            this.ClientSize = new System.Drawing.Size(324, 251);
+            this.Controls.Add(this.btInvolution);
+            this.Controls.Add(this.btInverse);
+            this.Controls.Add(this.btSqrt);
+            this.Controls.Add(this.btSquare);
+            this.Controls.Add(this.lbHistory);
+            this.Controls.Add(this.tbFormula);
             this.Controls.Add(this.btDot);
             this.Controls.Add(this.btCloseBracket);
             this.Controls.Add(this.btOpenBracket);
@@ -369,7 +424,12 @@
         private System.Windows.Forms.Button btOpenBracket;
         private System.Windows.Forms.Button btCloseBracket;
         private System.Windows.Forms.Button btDot;
-        private System.Windows.Forms.TextBox tbCalculation;
+        private System.Windows.Forms.TextBox tbFormula;
+        private System.Windows.Forms.ListBox lbHistory;
+        private System.Windows.Forms.Button btSquare;
+        private System.Windows.Forms.Button btSqrt;
+        private System.Windows.Forms.Button btInverse;
+        private System.Windows.Forms.Button btInvolution;
     }
 }
 
