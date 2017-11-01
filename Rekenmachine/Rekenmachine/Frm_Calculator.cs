@@ -50,6 +50,30 @@ namespace Rekenmachine
             lbHistory.Refresh();
         }
 
+        private void EnableOperatorButtons()
+        {
+            btAdd.Enabled = true;
+            btSubtract.Enabled = true;
+            btMultiply.Enabled = true;
+            btDivide.Enabled = true;
+            btInverse.Enabled = true;
+            btSqrt.Enabled = true;
+            btSquare.Enabled = true;
+            btInvolution.Enabled = true;
+        }
+
+        private void DisableOperatorButtons()
+        {
+            btAdd.Enabled = false;
+            btSubtract.Enabled = false;
+            btMultiply.Enabled = false;
+            btDivide.Enabled = false;
+            btInverse.Enabled = false;
+            btSqrt.Enabled = false;
+            btSquare.Enabled = false;
+            btInvolution.Enabled = false;
+        }
+
         #endregion
 
         #region methods
@@ -62,20 +86,32 @@ namespace Rekenmachine
 
         private void InputNumber(int input)
         {
+            EnableOperatorButtons();
+
             if (currentInputIndex == 2)
             {
                 currentInputIndex = 3;
             }
 
-            if (currentInput == 0)
+            if (currentInput == 0 || !overwroteLastResult)
             {
                 currentInput = input;
+                overwroteLastResult = true;
             }
             else
             {
-                currentInput = Double.Parse(currentInput.ToString() + input.ToString());
+                Double newInput;
+                try
+                {
+                    newInput = Double.Parse(currentInput.ToString() + input.ToString());
+                    currentInput = newInput;
+                }
+                catch (OverflowException)
+                {
+                    DisableOperatorButtons();
+                }
+                
             }
-            tbInput.Text = currentInput.ToString();
             UpdateUI();
         }
 
@@ -107,13 +143,13 @@ namespace Rekenmachine
             {
                 if (Double.TryParse(tbInput.Text, out input))
                 {
-                    SaveInput(subFormula, currentInputIndex, (Double)input);
-                    subFormula.Operator = op;
+                    SaveInput(subFormula, 1, (Double)input);
                 }
                 else
                 {
-                    ClearEntry();
+                    SaveInput(subFormula, 1, 0);
                 }
+                subFormula.Operator = op;
             }
             currentInputIndex = 2;
             UpdateUI();
@@ -157,14 +193,15 @@ namespace Rekenmachine
             subFormula = new Formula();
             fullFormula = subFormula;
             ClearFormula();
+            overwroteLastResult = false;
         }
 
         private void ClearEntry()
         {
-            currentInput = null;
+            currentInput = 0;
+            EnableOperatorButtons();
             UpdateUI();
         }
-
         private void ClearFormula()
         {
             subFormula = new Formula();
@@ -174,8 +211,29 @@ namespace Rekenmachine
         }
         private void Clear()
         {
-            currentInput = null;
+            ClearEntry();
             ClearFormula();
+        }
+
+        private void ClearCharacter()
+        {
+            if (overwroteLastResult)
+            {
+                String currentInputAsString = currentInput.ToString();
+                if (currentInputAsString.Length > 1)
+                {
+                    currentInput = Double.Parse(currentInputAsString.Substring(0, currentInputAsString.Length - 1));
+                }
+                else if (currentInputAsString.Length == 1)
+                {
+                    currentInput = null;
+                }
+                UpdateUI();
+            }
+            else
+            {
+                ClearEntry();
+            }
         }
 
         #endregion
@@ -287,5 +345,9 @@ namespace Rekenmachine
 
         #endregion
 
+        private void btBackspace_Click(object sender, EventArgs e)
+        {
+            ClearCharacter();
+        }
     }
 }

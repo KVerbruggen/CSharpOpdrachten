@@ -265,6 +265,7 @@
             this.btBackspace.TabIndex = 18;
             this.btBackspace.Text = "←";
             this.btBackspace.UseVisualStyleBackColor = true;
+            this.btBackspace.Click += new System.EventHandler(this.btBackspace_Click);
             // 
             // btOpenBracket
             // 
