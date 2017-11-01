@@ -127,6 +127,7 @@ namespace Rekenmachine
 
         private void InputOperator(Operator op)
         {
+            // TO-DO: Vervang 'currentInputIndex' door algoritme om te bepalen of er een nieuwe Sub-formule moet worden aangemaakt.
             Double input;
             if (currentInputIndex == 3)
             {
@@ -386,6 +387,36 @@ namespace Rekenmachine
         private void btBackspace_Click(object sender, EventArgs e)
         {
             ClearCharacter();
+        }
+
+        private void btInvolution_Click(object sender, EventArgs e)
+        {
+            InputOperator(Operator.Involution);
+        }
+
+        private void btSquare_Click(object sender, EventArgs e)
+        {
+            InputOperator(Operator.Involution);
+            subFormula.SetInput(2, 2);
+            Submit();
+        }
+
+        private void btSqrt_Click(object sender, EventArgs e)
+        {
+            InputOperator(Operator.Involution);
+            subFormula.SetInput(2, 0.5);
+            Submit();
+        }
+
+        private void btInverse_Click(object sender, EventArgs e)
+        {
+            // TO-DO: Werkt nog niet
+            String input = tbInput.Text;
+            ClearEntry();
+            InputNumber(1);
+            InputOperator(Operator.Division);
+            tbInput.Text = input;
+            Submit();
         }
     }
 }

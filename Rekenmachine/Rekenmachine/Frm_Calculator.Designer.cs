@@ -328,6 +328,7 @@
             this.btSquare.TabIndex = 24;
             this.btSquare.Text = "x²";
             this.btSquare.UseVisualStyleBackColor = true;
+            this.btSquare.Click += new System.EventHandler(this.btSquare_Click);
             // 
             // btSqrt
             // 
@@ -338,6 +339,7 @@
             this.btSqrt.TabIndex = 25;
             this.btSqrt.Text = "√x";
             this.btSqrt.UseVisualStyleBackColor = true;
+            this.btSqrt.Click += new System.EventHandler(this.btSqrt_Click);
             // 
             // btInverse
             // 
@@ -348,6 +350,7 @@
             this.btInverse.TabIndex = 26;
             this.btInverse.Text = "1/x";
             this.btInverse.UseVisualStyleBackColor = true;
+            this.btInverse.Click += new System.EventHandler(this.btInverse_Click);
             // 
             // btInvolution
             // 
@@ -358,6 +361,7 @@
             this.btInvolution.TabIndex = 27;
             this.btInvolution.Text = "xⁿ";
             this.btInvolution.UseVisualStyleBackColor = true;
+            this.btInvolution.Click += new System.EventHandler(this.btInvolution_Click);
             // 
             // Frm_Calculator
             // 

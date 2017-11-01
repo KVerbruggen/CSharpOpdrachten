@@ -11,7 +11,8 @@ namespace Rekenmachine
         Addition = '+',
         Subtraction = '-',
         Multiplication = '×',
-        Division = '÷'
+        Division = '÷',
+        Involution = '^'
     };
 
     class Formula
@@ -178,6 +179,9 @@ namespace Rekenmachine
                         break;
                     case Operator.Division:
                         Answer = Input1 / Input2;
+                        break;
+                    case Operator.Involution:
+                        Answer = Math.Pow(Input1, Input2);
                         break;
                     default:
                         Answer = Input1;
