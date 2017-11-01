@@ -75,6 +75,41 @@ namespace Rekenmachine
             }
         }
 
+        public dynamic GetRawInput(int inputNumber)
+        {
+            switch (inputNumber)
+            {
+                case 1:
+                    if (Input1Number != null)
+                    {
+                        return Input1Number;
+                    }
+                    else if(Input1Formula != null)
+                    {
+                        return Input1Formula;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                case 2:
+                    if (Input2Number != null)
+                    {
+                        return Input2Number;
+                    }
+                    else if(Input2Formula != null)
+                    {
+                        return Input2Formula;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                default:
+                    return null;
+            }
+        }
+
         public string GetInput(int inputNumber)
         {
             switch (inputNumber)
@@ -144,6 +179,9 @@ namespace Rekenmachine
                     case Operator.Division:
                         Answer = Input1 / Input2;
                         break;
+                    default:
+                        Answer = Input1;
+                        break;
                 }
             }
 
@@ -164,20 +202,20 @@ namespace Rekenmachine
 
         public string ToString(bool showAllValues)
         {
-            if (this.GetInput(1) == String.Empty)
+            if (GetInput(1) == String.Empty)
             {
                 return "";
             }
             String returnString = this.GetInput(1);
             if (showAllValues)
             {
-                returnString += " " + (char)this.Operator + " " + this.GetInput(2);
+                returnString += " " + (char)Operator + " " + GetInput(2);
             }
             else
             {
-                if (this.GetInput(2) != String.Empty)
+                if (Operator != 0 && GetInput(2) != String.Empty)
                 {
-                    returnString += " " + (char)this.Operator + " " + this.GetInput(2);
+                    returnString += " " + (char)Operator + " " + GetInput(2);
                 }
                 if (Answer != null)
                 {

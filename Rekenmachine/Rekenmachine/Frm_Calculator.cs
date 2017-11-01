@@ -24,7 +24,7 @@ namespace Rekenmachine
 
         private List<Formula> history = new List<Formula>();
 
-        private bool overwroteLastResult = true;
+        private bool overwroteLastResult = false;
 
         #endregion
 
@@ -42,12 +42,22 @@ namespace Rekenmachine
         {
             tbInput.Text = currentInput.ToString();
             tbFormula.Text = subFormula.ToString(true);
-            lbHistory.Items.Clear();
-            foreach (Formula f in history)
+            for (int i = 0; i < history.Count; i++)
             {
-                lbHistory.Items.Add(f);
+                if (lbHistory.Items.Count < i + 1)
+                {
+                    lbHistory.Items.Add(history[i]);
+                }
+                else
+                {
+                    if(lbHistory.Items[i] != history[i])
+                    {
+                        lbHistory.Items[i] = history[i];
+                    }
+                }
             }
             lbHistory.Refresh();
+            lbHistory.TopIndex = lbHistory.Items.Count - 1;
         }
 
         private void EnableOperatorButtons()
@@ -157,24 +167,41 @@ namespace Rekenmachine
 
         private void Submit()
         {
-            if (currentInputIndex == 1 || currentInputIndex == 2)
+            if (currentInputIndex == 1)
             {
-                if (currentInput == null)
+                if (!overwroteLastResult)
                 {
-                    // TO-DO: Repeat previous
+                    if (currentInput == null)
+                    {
+                        Clear();
+                        return;
+                    }
+                    subFormula.SetInput(1, (Double)currentInput);
+                    Formula lastFormula = (Formula)history[history.Count - 1];
+                    dynamic lastFormulaInput2 = lastFormula.GetRawInput(2);
+                    if (lastFormulaInput2 == null)
+                    {
+                        subFormula.SetInput(2, 0);
+                    }
+                    else
+                    {
+                        subFormula.SetInput(2, lastFormulaInput2);
+                    }
+                    subFormula.Operator = lastFormula.Operator;
+                    fullFormula = subFormula;
                 }
                 else
                 {
-                    SaveInput(subFormula, 1, (Double)currentInput);
+                    subFormula.SetInput(1, (Double)currentInput);
                     fullFormula = subFormula;
                 }
             }
             else if(currentInputIndex == 3)
             {
-                double input;
+                Double input;
                 if (Double.TryParse(tbInput.Text, out input))
                 {
-                    SaveInput(subFormula, 2, input);
+                    subFormula.SetInput(2, input);
                 }
                 else
                 {
@@ -184,7 +211,18 @@ namespace Rekenmachine
             fullFormula.Calculate();
             if (fullFormula.ToString() != "")
             {
-                history.Add(fullFormula);
+                if (history.Count > 0)
+                {
+                    Formula lastFormula = history[history.Count - 1];
+                    if (lastFormula.ToString(false) != fullFormula.ToString(false) || currentInputIndex == 3)
+                    {
+                        history.Add(fullFormula);
+                    }
+                }
+                else
+                {
+                    history.Add(fullFormula);
+                }
             }
             if (fullFormula.Answer != null && !Double.IsInfinity((Double)fullFormula.Answer) && !Double.IsNaN((Double)fullFormula.Answer))
             {
@@ -198,7 +236,7 @@ namespace Rekenmachine
 
         private void ClearEntry()
         {
-            currentInput = 0;
+            currentInput = null;
             EnableOperatorButtons();
             UpdateUI();
         }
