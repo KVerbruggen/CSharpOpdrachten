@@ -18,9 +18,10 @@ namespace FlagsOfTheWorld
         public FormOverview(Form parentForm)
         {
             this.parentForm = parentForm;
-            StartPosition = new FormStartPosition();
-            Top = parentForm.Top;
-            Left = parentForm.Left;
+
+            this.StartPosition = new FormStartPosition();
+            Top = parentForm.Top + Convert.ToInt32((parentForm.Size.Height - Size.Height) * 0.5);
+            Left = parentForm.Left + Convert.ToInt32((parentForm.Size.Width - Size.Width) * 0.5);
 
             InitializeComponent();
         }
@@ -32,8 +33,8 @@ namespace FlagsOfTheWorld
 
         private void FormOverview_FormClosing(object sender, FormClosingEventArgs e)
         {
-            parentForm.Top = Top;
-            parentForm.Left = Left;
+            parentForm.Top = Top + Convert.ToInt32((Size.Height - parentForm.Size.Height) * 0.5);
+            parentForm.Left = Left + Convert.ToInt32((Size.Width - parentForm.Size.Width) * 0.5);
             parentForm.Visible = true;
         }
 
@@ -62,7 +63,7 @@ namespace FlagsOfTheWorld
                 // 
                 // picturebox
                 // 
-                pbNation.BackColor = System.Drawing.Color.FromKnownColor(KnownColor.ControlLight);
+                pbNation.BackColor = System.Drawing.Color.FromKnownColor(KnownColor.ControlLightLight);
                 pbNation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                 pbNation.Location = new System.Drawing.Point(5, 10);
                 pbNation.Name = "pbNation" + flag.Id;
@@ -81,6 +82,8 @@ namespace FlagsOfTheWorld
                 gbNation.Size = new System.Drawing.Size(100, 110);
                 gbNation.TabIndex = 1;
                 gbNation.TabStop = false;
+                gbNation.BackColor = System.Drawing.Color.FromKnownColor(KnownColor.ControlLightLight);
+                gbNation.Margin = new Padding(0, 5, 5, 5);
 
                 // Add flag to the flowLayoutPanel
                 this.flowLayoutPanelMain.Controls.Add(gbNation);

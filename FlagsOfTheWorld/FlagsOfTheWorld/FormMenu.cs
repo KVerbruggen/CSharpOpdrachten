@@ -15,6 +15,7 @@ namespace FlagsOfTheWorld
 
         public FormMenu()
         {
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
 
             Main.LoadFlags();
