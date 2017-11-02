@@ -149,7 +149,7 @@ namespace Rekenmachine
 
         #region Methods
 
-        public double Calculate()
+        public double Calculate(int? roundDecimals)
         {
             double Input1;
             double Input2;
@@ -157,7 +157,7 @@ namespace Rekenmachine
             {
                 return 0;
             }
-            Input1 = (Input1Number == null ? Input1Formula.Calculate() : (Double)Input1Number);
+            Input1 = (Input1Number == null ? Input1Formula.Calculate(null) : (Double)Input1Number);
 
             if (GetInput(2) == String.Empty)
             {
@@ -165,7 +165,7 @@ namespace Rekenmachine
             }
             else
             {
-                Input2 = (Input2Number == null ? Input2Formula.Calculate() : (Double)Input2Number);
+                Input2 = (Input2Number == null ? Input2Formula.Calculate(null) : (Double)Input2Number);
                 switch (Operator)
                 {
                     case Operator.Addition:
@@ -195,6 +195,10 @@ namespace Rekenmachine
             }
             else
             {
+                if (roundDecimals != null)
+                {
+                    Answer = (Double)Math.Round((Double)Answer, (int)roundDecimals);
+                }
                 return (Double)Answer;
             }
         }

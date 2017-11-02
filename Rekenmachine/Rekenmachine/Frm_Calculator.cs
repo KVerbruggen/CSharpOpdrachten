@@ -66,10 +66,11 @@ namespace Rekenmachine
             btSubtract.Enabled = true;
             btMultiply.Enabled = true;
             btDivide.Enabled = true;
-            btInverse.Enabled = true;
             btSqrt.Enabled = true;
             btSquare.Enabled = true;
             btInvolution.Enabled = true;
+            btPercent.Enabled = true;
+            btEuro.Enabled = true;
         }
 
         private void DisableOperatorButtons()
@@ -78,10 +79,11 @@ namespace Rekenmachine
             btSubtract.Enabled = false;
             btMultiply.Enabled = false;
             btDivide.Enabled = false;
-            btInverse.Enabled = false;
             btSqrt.Enabled = false;
             btSquare.Enabled = false;
             btInvolution.Enabled = false;
+            btPercent.Enabled = true;
+            btEuro.Enabled = true;
         }
 
         #endregion
@@ -166,7 +168,7 @@ namespace Rekenmachine
             UpdateUI();
         }
 
-        private void Submit()
+        private void Submit(int? roundDecimals = null)
         {
             if (currentInputIndex == 1)
             {
@@ -209,7 +211,7 @@ namespace Rekenmachine
                     ClearEntry();
                 }
             }
-            fullFormula.Calculate();
+            fullFormula.Calculate(roundDecimals);
             if (fullFormula.ToString() != "")
             {
                 if (history.Count > 0)
@@ -408,15 +410,18 @@ namespace Rekenmachine
             Submit();
         }
 
-        private void btInverse_Click(object sender, EventArgs e)
+        private void btPercent_Click(object sender, EventArgs e)
         {
-            // TO-DO: Werkt nog niet
-            String input = tbInput.Text;
-            ClearEntry();
-            InputNumber(1);
             InputOperator(Operator.Division);
-            tbInput.Text = input;
+            subFormula.SetInput(2, 100);
             Submit();
+        }
+
+        private void btEuro_Click(object sender, EventArgs e)
+        {
+            InputOperator(Operator.Division);
+            subFormula.SetInput(2, 100);
+            Submit(2);
         }
     }
 }

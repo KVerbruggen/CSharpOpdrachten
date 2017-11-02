@@ -54,8 +54,9 @@
             this.lbHistory = new System.Windows.Forms.ListBox();
             this.btSquare = new System.Windows.Forms.Button();
             this.btSqrt = new System.Windows.Forms.Button();
-            this.btInverse = new System.Windows.Forms.Button();
             this.btInvolution = new System.Windows.Forms.Button();
+            this.btPercent = new System.Windows.Forms.Button();
+            this.btEuro = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbInput
@@ -65,7 +66,7 @@
             this.tbInput.Location = new System.Drawing.Point(12, 38);
             this.tbInput.Name = "tbInput";
             this.tbInput.ReadOnly = true;
-            this.tbInput.Size = new System.Drawing.Size(174, 20);
+            this.tbInput.Size = new System.Drawing.Size(210, 20);
             this.tbInput.TabIndex = 0;
             this.tbInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbInput.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbInput_KeyUp);
@@ -248,7 +249,7 @@
             // btSubmit
             // 
             this.btSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btSubmit.Location = new System.Drawing.Point(157, 65);
+            this.btSubmit.Location = new System.Drawing.Point(192, 65);
             this.btSubmit.Name = "btSubmit";
             this.btSubmit.Size = new System.Drawing.Size(30, 30);
             this.btSubmit.TabIndex = 17;
@@ -307,14 +308,14 @@
             this.tbFormula.Location = new System.Drawing.Point(12, 12);
             this.tbFormula.Name = "tbFormula";
             this.tbFormula.ReadOnly = true;
-            this.tbFormula.Size = new System.Drawing.Size(174, 20);
+            this.tbFormula.Size = new System.Drawing.Size(210, 20);
             this.tbFormula.TabIndex = 22;
             this.tbFormula.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbHistory
             // 
             this.lbHistory.FormattingEnabled = true;
-            this.lbHistory.Location = new System.Drawing.Point(193, 12);
+            this.lbHistory.Location = new System.Drawing.Point(229, 12);
             this.lbHistory.Name = "lbHistory";
             this.lbHistory.Size = new System.Drawing.Size(120, 225);
             this.lbHistory.TabIndex = 23;
@@ -322,7 +323,7 @@
             // btSquare
             // 
             this.btSquare.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btSquare.Location = new System.Drawing.Point(156, 137);
+            this.btSquare.Location = new System.Drawing.Point(155, 175);
             this.btSquare.Name = "btSquare";
             this.btSquare.Size = new System.Drawing.Size(30, 30);
             this.btSquare.TabIndex = 24;
@@ -333,7 +334,7 @@
             // btSqrt
             // 
             this.btSqrt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btSqrt.Location = new System.Drawing.Point(155, 174);
+            this.btSqrt.Location = new System.Drawing.Point(155, 211);
             this.btSqrt.Name = "btSqrt";
             this.btSqrt.Size = new System.Drawing.Size(31, 30);
             this.btSqrt.TabIndex = 25;
@@ -341,21 +342,10 @@
             this.btSqrt.UseVisualStyleBackColor = true;
             this.btSqrt.Click += new System.EventHandler(this.btSqrt_Click);
             // 
-            // btInverse
-            // 
-            this.btInverse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btInverse.Location = new System.Drawing.Point(155, 210);
-            this.btInverse.Name = "btInverse";
-            this.btInverse.Size = new System.Drawing.Size(31, 30);
-            this.btInverse.TabIndex = 26;
-            this.btInverse.Text = "1/x";
-            this.btInverse.UseVisualStyleBackColor = true;
-            this.btInverse.Click += new System.EventHandler(this.btInverse_Click);
-            // 
             // btInvolution
             // 
             this.btInvolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btInvolution.Location = new System.Drawing.Point(156, 101);
+            this.btInvolution.Location = new System.Drawing.Point(155, 137);
             this.btInvolution.Name = "btInvolution";
             this.btInvolution.Size = new System.Drawing.Size(30, 30);
             this.btInvolution.TabIndex = 27;
@@ -363,13 +353,36 @@
             this.btInvolution.UseVisualStyleBackColor = true;
             this.btInvolution.Click += new System.EventHandler(this.btInvolution_Click);
             // 
+            // btPercent
+            // 
+            this.btPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btPercent.Location = new System.Drawing.Point(155, 65);
+            this.btPercent.Name = "btPercent";
+            this.btPercent.Size = new System.Drawing.Size(31, 30);
+            this.btPercent.TabIndex = 28;
+            this.btPercent.Text = "%";
+            this.btPercent.UseVisualStyleBackColor = true;
+            this.btPercent.Click += new System.EventHandler(this.btPercent_Click);
+            // 
+            // btEuro
+            // 
+            this.btEuro.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btEuro.Location = new System.Drawing.Point(155, 101);
+            this.btEuro.Name = "btEuro";
+            this.btEuro.Size = new System.Drawing.Size(31, 30);
+            this.btEuro.TabIndex = 29;
+            this.btEuro.Text = "€";
+            this.btEuro.UseVisualStyleBackColor = true;
+            this.btEuro.Click += new System.EventHandler(this.btEuro_Click);
+            // 
             // Frm_Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 251);
+            this.ClientSize = new System.Drawing.Size(470, 251);
+            this.Controls.Add(this.btEuro);
+            this.Controls.Add(this.btPercent);
             this.Controls.Add(this.btInvolution);
-            this.Controls.Add(this.btInverse);
             this.Controls.Add(this.btSqrt);
             this.Controls.Add(this.btSquare);
             this.Controls.Add(this.lbHistory);
@@ -433,8 +446,9 @@
         private System.Windows.Forms.ListBox lbHistory;
         private System.Windows.Forms.Button btSquare;
         private System.Windows.Forms.Button btSqrt;
-        private System.Windows.Forms.Button btInverse;
         private System.Windows.Forms.Button btInvolution;
+        private System.Windows.Forms.Button btPercent;
+        private System.Windows.Forms.Button btEuro;
     }
 }
 
