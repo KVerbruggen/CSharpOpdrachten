@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace FlagsOfTheWorld
 {
-    public partial class Form1 : Form
+    public partial class FormMenu : Form
     {
-        public Form1()
+
+        public FormMenu()
         {
             InitializeComponent();
+
+            Main.LoadFlags();
+        }
+
+        private void btOpenOverview_Click(object sender, EventArgs e)
+        {
+            Form overviewForm = new FormOverview(this);
+            overviewForm.Show();
+            this.Visible = false;
         }
     }
 }
