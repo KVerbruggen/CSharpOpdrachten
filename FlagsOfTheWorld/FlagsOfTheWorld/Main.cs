@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Linq;
 
 namespace FlagsOfTheWorld
 {
@@ -39,7 +40,10 @@ namespace FlagsOfTheWorld
                         }
                     }
                 }
-                
+
+                // Order flaglist using Linq - based on: https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object
+                flags = flags.OrderBy(flag => flag.Name).ToList();
+
             }
         }
 
