@@ -105,17 +105,30 @@ namespace Rekenmachine
                 currentInputIndex = 3;
             }
 
-            if (currentInput == 0 || !overwroteLastResult)
+            if (!overwroteLastResult)
             {
                 currentInput = input;
                 overwroteLastResult = true;
+            }
+            else if (currentInput == 0)
+            {
+                if (tbInput.Text.Length > 1 && tbInput.Text[tbInput.Text.Length - 1] == '.')
+                {
+                    currentInput = Double.Parse("0." + input.ToString());
+                }
             }
             else
             {
                 Double newInput;
                 try
                 {
-                    newInput = Double.Parse(currentInput.ToString() + input.ToString());
+                    string newInputString = currentInput.ToString();
+                    if(tbInput.Text.Length > 1 && tbInput.Text[tbInput.Text.Length - 1] == '.')
+                    {
+                        newInputString += '.';
+                    }
+                    newInputString += input.ToString();
+                    newInput = Double.Parse(newInputString);
                     currentInput = newInput;
                 }
                 catch (OverflowException)
@@ -412,6 +425,10 @@ namespace Rekenmachine
 
         private void btPercent_Click(object sender, EventArgs e)
         {
+            if (currentInputIndex == 3)
+            {
+                // TO-DO: if percent after second input -> Grab 2nd % of 1st input.
+            }
             InputOperator(Operator.Division);
             subFormula.SetInput(2, 100);
             Submit();
@@ -422,6 +439,18 @@ namespace Rekenmachine
             InputOperator(Operator.Division);
             subFormula.SetInput(2, 100);
             Submit(2);
+        }
+
+        private void btDot_Click(object sender, EventArgs e)
+        {
+            if (!tbInput.Text.Contains('.'))
+            {
+                if (tbInput.Text.Length == 0)
+                {
+                    InputNumber(0);
+                }
+                tbInput.Text += '.';
+            }
         }
     }
 }

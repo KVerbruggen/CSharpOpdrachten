@@ -299,6 +299,7 @@
             this.btDot.TabIndex = 21;
             this.btDot.Text = ".";
             this.btDot.UseVisualStyleBackColor = true;
+            this.btDot.Click += new System.EventHandler(this.btDot_Click);
             // 
             // tbFormula
             // 
@@ -379,7 +380,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(470, 251);
+            this.ClientSize = new System.Drawing.Size(359, 251);
             this.Controls.Add(this.btEuro);
             this.Controls.Add(this.btPercent);
             this.Controls.Add(this.btInvolution);
