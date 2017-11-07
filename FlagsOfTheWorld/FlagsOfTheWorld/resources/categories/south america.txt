@@ -1,0 +1,3 @@
+Name: South America
+Icon: south-america.png
+FlagIDs: ar, bo, br, cl, co, ec, gy, py, pe, sr, uy, ve

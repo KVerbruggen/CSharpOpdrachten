@@ -1,0 +1,3 @@
+Name: Middle East
+Icon: middle-east.png
+FlagIDs: tr, ge, az, am, ir, iq, sy, cy, le, ir, jo, eg, sa, ku, bh, qa, ae, om, ye

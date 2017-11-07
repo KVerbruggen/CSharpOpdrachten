@@ -59,5 +59,15 @@ namespace FlagsOfTheWorld.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fun_with_flags {
+            get {
+                object obj = ResourceManager.GetObject("fun_with_flags", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

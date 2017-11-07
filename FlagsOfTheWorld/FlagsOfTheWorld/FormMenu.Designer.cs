@@ -28,34 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMenu));
             this.btOpenOverview = new System.Windows.Forms.Button();
             this.btStartTest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btOpenOverview
             // 
-            this.btOpenOverview.Location = new System.Drawing.Point(82, 48);
+            this.btOpenOverview.Location = new System.Drawing.Point(53, 190);
             this.btOpenOverview.Name = "btOpenOverview";
             this.btOpenOverview.Size = new System.Drawing.Size(120, 40);
-            this.btOpenOverview.TabIndex = 0;
-            this.btOpenOverview.Text = "Bekijk vlaggen";
+            this.btOpenOverview.TabIndex = 1;
+            this.btOpenOverview.Text = "Flag overview";
             this.btOpenOverview.UseVisualStyleBackColor = true;
             this.btOpenOverview.Click += new System.EventHandler(this.btOpenOverview_Click);
             // 
             // btStartTest
             // 
-            this.btStartTest.Location = new System.Drawing.Point(82, 94);
+            this.btStartTest.Location = new System.Drawing.Point(53, 145);
             this.btStartTest.Name = "btStartTest";
             this.btStartTest.Size = new System.Drawing.Size(120, 40);
-            this.btStartTest.TabIndex = 1;
-            this.btStartTest.Text = "Oefenen";
+            this.btStartTest.TabIndex = 0;
+            this.btStartTest.Text = "Practice";
             this.btStartTest.UseVisualStyleBackColor = true;
+            this.btStartTest.Click += new System.EventHandler(this.btStartTest_Click);
             // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 201);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ClientSize = new System.Drawing.Size(394, 387);
             this.Controls.Add(this.btStartTest);
             this.Controls.Add(this.btOpenOverview);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

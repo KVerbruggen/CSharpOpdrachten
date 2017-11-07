@@ -19,8 +19,7 @@ namespace FlagsOfTheWorld
             this.parentForm = parentForm;
 
             this.StartPosition = new FormStartPosition();
-            Top = parentForm.Top + Convert.ToInt32((parentForm.Size.Height - Size.Height) * 0.5);
-            Left = parentForm.Left + Convert.ToInt32((parentForm.Size.Width - Size.Width) * 0.5);
+            Main.ConvertCoordinates(parentForm, this);
 
             InitializeComponent();
         }
@@ -32,8 +31,7 @@ namespace FlagsOfTheWorld
 
         private void FormOverview_FormClosing(object sender, FormClosingEventArgs e)
         {
-            parentForm.Top = Top + Convert.ToInt32((Size.Height - parentForm.Size.Height) * 0.5);
-            parentForm.Left = Left + Convert.ToInt32((Size.Width - parentForm.Size.Width) * 0.5);
+            Main.ConvertCoordinates(this, parentForm);
             parentForm.Visible = true;
         }
 
@@ -53,11 +51,11 @@ namespace FlagsOfTheWorld
                 // label
                 // 
                 lblNation.BackColor = System.Drawing.Color.Transparent;
-                lblNation.Location = new System.Drawing.Point(0, 75);
+                lblNation.Location = new System.Drawing.Point(0, 85);
                 lblNation.Name = "lblNation" + flag.Id;
-                lblNation.Size = new System.Drawing.Size(100, 30);
+                lblNation.Size = new System.Drawing.Size(110, 30);
                 lblNation.TabIndex = 0;
-                lblNation.Text = flag.Name;
+                lblNation.Text = flag.Country[0];
                 lblNation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                 // 
                 // picturebox
@@ -66,7 +64,7 @@ namespace FlagsOfTheWorld
                 pbNation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                 pbNation.Location = new System.Drawing.Point(5, 10);
                 pbNation.Name = "pbNation" + flag.Id;
-                pbNation.Size = new System.Drawing.Size(90, 65);
+                pbNation.Size = new System.Drawing.Size(100, 75);
                 pbNation.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
                 pbNation.TabIndex = 1;
                 pbNation.TabStop = false;
@@ -78,7 +76,7 @@ namespace FlagsOfTheWorld
                 gbNation.Controls.Add(pbNation);
                 gbNation.Location = new System.Drawing.Point(3, 3);
                 gbNation.Name = "gbNation" + flag.Id;
-                gbNation.Size = new System.Drawing.Size(100, 110);
+                gbNation.Size = new System.Drawing.Size(110, 120);
                 gbNation.TabIndex = 1;
                 gbNation.TabStop = false;
                 gbNation.BackColor = System.Drawing.Color.FromKnownColor(KnownColor.ControlLightLight);

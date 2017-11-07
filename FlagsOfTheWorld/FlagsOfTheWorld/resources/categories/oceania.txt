@@ -1,0 +1,3 @@
+Name: Oceania
+Icon: oceania.png
+FlagIDs: au, nz, pg, fj, nr, sb, vu, fm, ki, mh, pw, ws, to, tv

@@ -1,0 +1,3 @@
+Name: Microstates
+Icon: microstates.png
+FlagIDs: va, mc, nr, tv, sm, li, mh, kn, mv, mt, gd, vc, bb, ag, sc, pw, ad, lc, fm, sg

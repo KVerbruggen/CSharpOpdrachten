@@ -5,36 +5,44 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
 
 namespace FlagsOfTheWorld
 {
     public class Flag
     {
-        public Image Image { get; private set; }
-        public String Id { get; private set; }
-        public String Name { get; private set; }
 
-        public Flag(String id, String name, Image image)
+        #region Properties
+
+        public string Id { get; private set; }
+        public string[] Country { get; private set; }
+        public Image Image { get; private set; }
+
+        #endregion
+
+        #region constructors
+
+        private Flag(string id, string[] countryNames)
+        {
+            Id = id;
+            Country = countryNames;
+        }
+
+        public Flag(string id, string[] countryNames, Image image) : this(id, countryNames)
         {
             Image = image;
-            Id = id;
-            Name = name;
         }
 
-        public Flag(String id, String name, String imageURI)
+        public Flag(string id, string[] countryNames, string imageURI) : this(id, countryNames)
         {
-            Id = id;
-            Name = name;
-            try {
-                Image = Image.FromFile(imageURI);
-            }
-            catch (FileNotFoundException)
-            {
-                Image = null;
-            }
-
+            Image = Main.TryImageFromFile(imageURI);
         }
+
+        public Flag(string id, string countryName, Image image) : this(id, new string[1] { countryName }, image)
+        { }
+        public Flag(string id, string countryName, string imageURI) : this(id, new string[1] { countryName }, imageURI)
+        { }
+
+        #endregion
 
     }
 }

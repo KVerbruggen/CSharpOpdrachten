@@ -15,16 +15,24 @@ namespace FlagsOfTheWorld
 
         public FormMenu()
         {
+            Main.LoadFlags();
+            Main.LoadCategories();
+
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
-
-            Main.LoadFlags();
         }
 
         private void btOpenOverview_Click(object sender, EventArgs e)
         {
             Form overviewForm = new FormOverview(this);
             overviewForm.Show();
+            this.Visible = false;
+        }
+
+        private void btStartTest_Click(object sender, EventArgs e)
+        {
+            Form categoryPicker = new FormCategoryPicker(this);
+            categoryPicker.Show();
             this.Visible = false;
         }
     }

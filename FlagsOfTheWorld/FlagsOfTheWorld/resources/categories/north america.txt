@@ -1,0 +1,3 @@
+Name: North America
+Icon: north-america.png
+FlagIDs: ag, bb, bs, cr, cu, dm, do, gd, ht, jm, kn, lc, tt, vc, us, ca, mx, bz, sv, gt, hn, ni, pa

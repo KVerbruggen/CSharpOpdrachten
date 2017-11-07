@@ -1,0 +1,3 @@
+Name: Central Asia
+Icon: central-asia.png
+FlagIDs: af, kg, kz, tj, tm, uz
