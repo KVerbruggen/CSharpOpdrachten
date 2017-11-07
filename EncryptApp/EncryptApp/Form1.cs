@@ -15,11 +15,24 @@ namespace EncryptApp
         public Form1()
         {
             InitializeComponent();
+            this.tbInput.Focus();
+            this.tbInput.Select();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btEncrypt_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            cbEncryptionAlgorithms.Width = tbInput.Width - 56;
+            tbKey.Width = tbInput.Width - 158;
         }
     }
 }

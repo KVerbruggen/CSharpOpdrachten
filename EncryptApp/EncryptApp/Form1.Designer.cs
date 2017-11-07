@@ -37,14 +37,17 @@
             this.lblCbAlgorithm = new System.Windows.Forms.Label();
             this.btDecryptFile = new System.Windows.Forms.Button();
             this.tbOutput = new System.Windows.Forms.TextBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainerInputOutput = new System.Windows.Forms.SplitContainer();
             this.lblOutput = new System.Windows.Forms.Label();
             this.btEncrypt = new System.Windows.Forms.Button();
             this.btDecrypt = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            this.lblKey = new System.Windows.Forms.Label();
+            this.tbKey = new System.Windows.Forms.TextBox();
+            this.btLoadKeyFromFile = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerInputOutput)).BeginInit();
+            this.splitContainerInputOutput.Panel1.SuspendLayout();
+            this.splitContainerInputOutput.Panel2.SuspendLayout();
+            this.splitContainerInputOutput.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbInput
@@ -72,15 +75,15 @@
             // 
             this.cbEncryptionAlgorithms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbEncryptionAlgorithms.FormattingEnabled = true;
-            this.cbEncryptionAlgorithms.Location = new System.Drawing.Point(15, 333);
+            this.cbEncryptionAlgorithms.Location = new System.Drawing.Point(71, 333);
             this.cbEncryptionAlgorithms.Name = "cbEncryptionAlgorithms";
-            this.cbEncryptionAlgorithms.Size = new System.Drawing.Size(287, 21);
+            this.cbEncryptionAlgorithms.Size = new System.Drawing.Size(224, 21);
             this.cbEncryptionAlgorithms.TabIndex = 3;
             // 
             // btEncryptToFile
             // 
             this.btEncryptToFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btEncryptToFile.Location = new System.Drawing.Point(395, 302);
+            this.btEncryptToFile.Location = new System.Drawing.Point(396, 302);
             this.btEncryptToFile.Name = "btEncryptToFile";
             this.btEncryptToFile.Size = new System.Drawing.Size(104, 23);
             this.btEncryptToFile.TabIndex = 4;
@@ -90,7 +93,7 @@
             // btDecryptToFile
             // 
             this.btDecryptToFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDecryptToFile.Location = new System.Drawing.Point(395, 331);
+            this.btDecryptToFile.Location = new System.Drawing.Point(396, 331);
             this.btDecryptToFile.Name = "btDecryptToFile";
             this.btDecryptToFile.Size = new System.Drawing.Size(104, 23);
             this.btDecryptToFile.TabIndex = 5;
@@ -110,7 +113,7 @@
             // 
             this.lblCbAlgorithm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCbAlgorithm.AutoSize = true;
-            this.lblCbAlgorithm.Location = new System.Drawing.Point(12, 317);
+            this.lblCbAlgorithm.Location = new System.Drawing.Point(12, 336);
             this.lblCbAlgorithm.Name = "lblCbAlgorithm";
             this.lblCbAlgorithm.Size = new System.Drawing.Size(53, 13);
             this.lblCbAlgorithm.TabIndex = 7;
@@ -139,26 +142,26 @@
             this.tbOutput.Size = new System.Drawing.Size(280, 267);
             this.tbOutput.TabIndex = 9;
             // 
-            // splitContainer1
+            // splitContainerInputOutput
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.splitContainerInputOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(12, 4);
-            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainerInputOutput.Location = new System.Drawing.Point(12, 4);
+            this.splitContainerInputOutput.Name = "splitContainerInputOutput";
             // 
-            // splitContainer1.Panel1
+            // splitContainerInputOutput.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.tbInput);
-            this.splitContainer1.Panel1.Controls.Add(this.lblInput);
+            this.splitContainerInputOutput.Panel1.Controls.Add(this.tbInput);
+            this.splitContainerInputOutput.Panel1.Controls.Add(this.lblInput);
             // 
-            // splitContainer1.Panel2
+            // splitContainerInputOutput.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.lblOutput);
-            this.splitContainer1.Panel2.Controls.Add(this.tbOutput);
-            this.splitContainer1.Size = new System.Drawing.Size(580, 292);
-            this.splitContainer1.SplitterDistance = 290;
-            this.splitContainer1.TabIndex = 10;
+            this.splitContainerInputOutput.Panel2.Controls.Add(this.lblOutput);
+            this.splitContainerInputOutput.Panel2.Controls.Add(this.tbOutput);
+            this.splitContainerInputOutput.Size = new System.Drawing.Size(580, 292);
+            this.splitContainerInputOutput.SplitterDistance = 290;
+            this.splitContainerInputOutput.TabIndex = 10;
             // 
             // lblOutput
             // 
@@ -178,6 +181,7 @@
             this.btEncrypt.TabIndex = 11;
             this.btEncrypt.Text = "Encrypt";
             this.btEncrypt.UseVisualStyleBackColor = true;
+            this.btEncrypt.Click += new System.EventHandler(this.btEncrypt_Click);
             // 
             // btDecrypt
             // 
@@ -189,14 +193,45 @@
             this.btDecrypt.Text = "Decrypt";
             this.btDecrypt.UseVisualStyleBackColor = true;
             // 
+            // lblKey
+            // 
+            this.lblKey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblKey.AutoSize = true;
+            this.lblKey.Location = new System.Drawing.Point(12, 307);
+            this.lblKey.Name = "lblKey";
+            this.lblKey.Size = new System.Drawing.Size(28, 13);
+            this.lblKey.TabIndex = 14;
+            this.lblKey.Text = "Key:";
+            // 
+            // tbKey
+            // 
+            this.tbKey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbKey.Location = new System.Drawing.Point(71, 304);
+            this.tbKey.Name = "tbKey";
+            this.tbKey.Size = new System.Drawing.Size(121, 20);
+            this.tbKey.TabIndex = 15;
+            // 
+            // btLoadKeyFromFile
+            // 
+            this.btLoadKeyFromFile.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btLoadKeyFromFile.Location = new System.Drawing.Point(198, 302);
+            this.btLoadKeyFromFile.Name = "btLoadKeyFromFile";
+            this.btLoadKeyFromFile.Size = new System.Drawing.Size(98, 23);
+            this.btLoadKeyFromFile.TabIndex = 16;
+            this.btLoadKeyFromFile.Text = "Get Key From File";
+            this.btLoadKeyFromFile.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(604, 361);
+            this.Controls.Add(this.btLoadKeyFromFile);
+            this.Controls.Add(this.tbKey);
+            this.Controls.Add(this.lblKey);
             this.Controls.Add(this.btDecrypt);
             this.Controls.Add(this.btEncrypt);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.splitContainerInputOutput);
             this.Controls.Add(this.btDecryptFile);
             this.Controls.Add(this.lblCbAlgorithm);
             this.Controls.Add(this.btDecryptToFile);
@@ -207,12 +242,13 @@
             this.Name = "Form1";
             this.Text = "EncryptApp";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
+            this.splitContainerInputOutput.Panel1.ResumeLayout(false);
+            this.splitContainerInputOutput.Panel1.PerformLayout();
+            this.splitContainerInputOutput.Panel2.ResumeLayout(false);
+            this.splitContainerInputOutput.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerInputOutput)).EndInit();
+            this.splitContainerInputOutput.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,10 +265,13 @@
         private System.Windows.Forms.Label lblCbAlgorithm;
         private System.Windows.Forms.Button btDecryptFile;
         private System.Windows.Forms.TextBox tbOutput;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainerInputOutput;
         private System.Windows.Forms.Label lblOutput;
         private System.Windows.Forms.Button btEncrypt;
         private System.Windows.Forms.Button btDecrypt;
+        private System.Windows.Forms.Label lblKey;
+        private System.Windows.Forms.TextBox tbKey;
+        private System.Windows.Forms.Button btLoadKeyFromFile;
     }
 }
 

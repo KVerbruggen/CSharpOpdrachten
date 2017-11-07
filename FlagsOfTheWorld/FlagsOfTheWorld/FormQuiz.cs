@@ -73,7 +73,7 @@ namespace FlagsOfTheWorld
             btSubmit.Visible = true;
             SubmitButton = btSubmit;
             UpdateControls();
-            tbAnswer.Focus();
+            tbAnswer.Select();
         }
 
         private void HideQuestion()
