@@ -32,10 +32,18 @@ namespace EncryptApp
 
         private string SaveFileLocation()
         {
+            string filter = "Text Files (*.txt)|*.txt";
+            List<string> extraExtensions = Encryption.GetFileExtensions();
+            foreach (string extension in extraExtensions)
+            {
+                filter += "|" + extension;
+            }
+            filter += "|All Files (*.*)|*.* ";
             SaveFileDialog dialogGetSaveLocation = new SaveFileDialog
             {
                 CheckPathExists = true,
-                OverwritePrompt = true
+                OverwritePrompt = true,
+                Filter = filter
             };
             return GetLocation(dialogGetSaveLocation);
 

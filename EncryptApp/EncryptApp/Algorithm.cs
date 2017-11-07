@@ -8,6 +8,7 @@ namespace EncryptApp
 {
     public abstract class Algorithm
     {
+        public string FileExtension { get; protected set; }
         public abstract string Encrypt(string input, string key);
         public abstract string Decrypt(string input, string key);
     }

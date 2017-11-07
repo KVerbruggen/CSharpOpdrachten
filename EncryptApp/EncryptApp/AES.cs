@@ -8,6 +8,10 @@ namespace EncryptApp
 {
     public class AES : Algorithm
     {
+        public AES()
+        {
+            FileExtension = "AES Files (*.aes)|*.aes";
+        }
         public override string Encrypt(string input, string key)
         {
             // TO-DO: Implement AES

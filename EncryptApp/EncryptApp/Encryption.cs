@@ -13,11 +13,20 @@ namespace EncryptApp
 
     public static class Encryption
     {
-        private static Algorithm AES = new AES();
         private static Algorithm[] encryptionAlgorithms = new Algorithm[]
         {
-            AES
+            new AES()
         };
+
+        public static List<string> GetFileExtensions()
+        {
+            List<string> extensions = new List<string>();
+            foreach (Algorithm algorithm in encryptionAlgorithms)
+            {
+                extensions.Add(algorithm.FileExtension);
+            }
+            return extensions;
+        }
 
         public static string Encrypt(Algorithms algorithm, string input, string key)
         {
