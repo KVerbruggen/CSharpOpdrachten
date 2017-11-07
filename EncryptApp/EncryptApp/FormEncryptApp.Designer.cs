@@ -1,6 +1,6 @@
 ﻿namespace EncryptApp
 {
-    partial class Form1
+    partial class FormEncryptApp
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tbInput = new System.Windows.Forms.TextBox();
-            this.btEncryptFromFile = new System.Windows.Forms.Button();
+            this.btEncryptFile = new System.Windows.Forms.Button();
             this.cbEncryptionAlgorithms = new System.Windows.Forms.ComboBox();
             this.btEncryptToFile = new System.Windows.Forms.Button();
             this.btDecryptToFile = new System.Windows.Forms.Button();
@@ -61,15 +61,16 @@
             this.tbInput.Size = new System.Drawing.Size(280, 267);
             this.tbInput.TabIndex = 0;
             // 
-            // btEncryptFromFile
+            // btEncryptFile
             // 
-            this.btEncryptFromFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btEncryptFromFile.Location = new System.Drawing.Point(505, 302);
-            this.btEncryptFromFile.Name = "btEncryptFromFile";
-            this.btEncryptFromFile.Size = new System.Drawing.Size(84, 23);
-            this.btEncryptFromFile.TabIndex = 1;
-            this.btEncryptFromFile.Text = "Encrypt File";
-            this.btEncryptFromFile.UseVisualStyleBackColor = true;
+            this.btEncryptFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btEncryptFile.Location = new System.Drawing.Point(505, 302);
+            this.btEncryptFile.Name = "btEncryptFile";
+            this.btEncryptFile.Size = new System.Drawing.Size(84, 23);
+            this.btEncryptFile.TabIndex = 8;
+            this.btEncryptFile.Text = "Encrypt File";
+            this.btEncryptFile.UseVisualStyleBackColor = true;
+            this.btEncryptFile.Click += new System.EventHandler(this.btEncryptFile_Click);
             // 
             // cbEncryptionAlgorithms
             // 
@@ -86,9 +87,10 @@
             this.btEncryptToFile.Location = new System.Drawing.Point(396, 302);
             this.btEncryptToFile.Name = "btEncryptToFile";
             this.btEncryptToFile.Size = new System.Drawing.Size(104, 23);
-            this.btEncryptToFile.TabIndex = 4;
+            this.btEncryptToFile.TabIndex = 6;
             this.btEncryptToFile.Text = "Encrypt and Save";
             this.btEncryptToFile.UseVisualStyleBackColor = true;
+            this.btEncryptToFile.Click += new System.EventHandler(this.btEncryptToFile_Click);
             // 
             // btDecryptToFile
             // 
@@ -96,9 +98,10 @@
             this.btDecryptToFile.Location = new System.Drawing.Point(396, 331);
             this.btDecryptToFile.Name = "btDecryptToFile";
             this.btDecryptToFile.Size = new System.Drawing.Size(104, 23);
-            this.btDecryptToFile.TabIndex = 5;
+            this.btDecryptToFile.TabIndex = 7;
             this.btDecryptToFile.Text = "Decrypt and Save";
             this.btDecryptToFile.UseVisualStyleBackColor = true;
+            this.btDecryptToFile.Click += new System.EventHandler(this.btDecryptToFile_Click);
             // 
             // lblInput
             // 
@@ -125,9 +128,10 @@
             this.btDecryptFile.Location = new System.Drawing.Point(505, 331);
             this.btDecryptFile.Name = "btDecryptFile";
             this.btDecryptFile.Size = new System.Drawing.Size(84, 23);
-            this.btDecryptFile.TabIndex = 8;
+            this.btDecryptFile.TabIndex = 9;
             this.btDecryptFile.Text = "Decrypt File";
             this.btDecryptFile.UseVisualStyleBackColor = true;
+            this.btDecryptFile.Click += new System.EventHandler(this.btDecryptFile_Click);
             // 
             // tbOutput
             // 
@@ -140,13 +144,15 @@
             this.tbOutput.Name = "tbOutput";
             this.tbOutput.ReadOnly = true;
             this.tbOutput.Size = new System.Drawing.Size(280, 267);
-            this.tbOutput.TabIndex = 9;
+            this.tbOutput.TabIndex = 8;
+            this.tbOutput.TabStop = false;
             // 
             // splitContainerInputOutput
             // 
             this.splitContainerInputOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainerInputOutput.IsSplitterFixed = true;
             this.splitContainerInputOutput.Location = new System.Drawing.Point(12, 4);
             this.splitContainerInputOutput.Name = "splitContainerInputOutput";
             // 
@@ -162,6 +168,7 @@
             this.splitContainerInputOutput.Size = new System.Drawing.Size(580, 292);
             this.splitContainerInputOutput.SplitterDistance = 290;
             this.splitContainerInputOutput.TabIndex = 10;
+            this.splitContainerInputOutput.TabStop = false;
             // 
             // lblOutput
             // 
@@ -178,7 +185,7 @@
             this.btEncrypt.Location = new System.Drawing.Point(308, 302);
             this.btEncrypt.Name = "btEncrypt";
             this.btEncrypt.Size = new System.Drawing.Size(84, 23);
-            this.btEncrypt.TabIndex = 11;
+            this.btEncrypt.TabIndex = 4;
             this.btEncrypt.Text = "Encrypt";
             this.btEncrypt.UseVisualStyleBackColor = true;
             this.btEncrypt.Click += new System.EventHandler(this.btEncrypt_Click);
@@ -189,9 +196,10 @@
             this.btDecrypt.Location = new System.Drawing.Point(308, 331);
             this.btDecrypt.Name = "btDecrypt";
             this.btDecrypt.Size = new System.Drawing.Size(84, 23);
-            this.btDecrypt.TabIndex = 12;
+            this.btDecrypt.TabIndex = 5;
             this.btDecrypt.Text = "Decrypt";
             this.btDecrypt.UseVisualStyleBackColor = true;
+            this.btDecrypt.Click += new System.EventHandler(this.btDecrypt_Click);
             // 
             // lblKey
             // 
@@ -209,7 +217,7 @@
             this.tbKey.Location = new System.Drawing.Point(71, 304);
             this.tbKey.Name = "tbKey";
             this.tbKey.Size = new System.Drawing.Size(121, 20);
-            this.tbKey.TabIndex = 15;
+            this.tbKey.TabIndex = 1;
             // 
             // btLoadKeyFromFile
             // 
@@ -217,11 +225,12 @@
             this.btLoadKeyFromFile.Location = new System.Drawing.Point(198, 302);
             this.btLoadKeyFromFile.Name = "btLoadKeyFromFile";
             this.btLoadKeyFromFile.Size = new System.Drawing.Size(98, 23);
-            this.btLoadKeyFromFile.TabIndex = 16;
+            this.btLoadKeyFromFile.TabIndex = 2;
             this.btLoadKeyFromFile.Text = "Get Key From File";
             this.btLoadKeyFromFile.UseVisualStyleBackColor = true;
+            this.btLoadKeyFromFile.Click += new System.EventHandler(this.btLoadKeyFromFile_Click);
             // 
-            // Form1
+            // FormEncryptApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -237,11 +246,10 @@
             this.Controls.Add(this.btDecryptToFile);
             this.Controls.Add(this.btEncryptToFile);
             this.Controls.Add(this.cbEncryptionAlgorithms);
-            this.Controls.Add(this.btEncryptFromFile);
+            this.Controls.Add(this.btEncryptFile);
             this.MinimumSize = new System.Drawing.Size(620, 400);
-            this.Name = "Form1";
+            this.Name = "FormEncryptApp";
             this.Text = "EncryptApp";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.splitContainerInputOutput.Panel1.ResumeLayout(false);
             this.splitContainerInputOutput.Panel1.PerformLayout();
@@ -257,7 +265,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox tbInput;
-        private System.Windows.Forms.Button btEncryptFromFile;
+        private System.Windows.Forms.Button btEncryptFile;
         private System.Windows.Forms.ComboBox cbEncryptionAlgorithms;
         private System.Windows.Forms.Button btEncryptToFile;
         private System.Windows.Forms.Button btDecryptToFile;
