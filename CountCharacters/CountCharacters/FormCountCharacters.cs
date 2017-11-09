@@ -43,15 +43,21 @@ namespace CountCharacters
 
             CharacterFrequencyView.Rows.Clear();
 
-            foreach (KeyValuePair<string, int> singleCharacterData in Main.LoadFile(fileLocations, out characterCount))
+            Dictionary<string, int> characterFrequencies;
+            characterCount = Main.LoadFile(fileLocations, out characterFrequencies);
+
+            if (characterFrequencies != null)
             {
-                DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(CharacterFrequencyView);
-                row.SetValues(singleCharacterData.Key, singleCharacterData.Value);
-                CharacterFrequencyView.Rows.Add(row);
-                CharacterFrequencyView.Sort(CharacterFrequencyView.Columns[1], ListSortDirection.Descending);
+                foreach (KeyValuePair<string, int> singleCharacterData in characterFrequencies)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(CharacterFrequencyView);
+                    row.SetValues(singleCharacterData.Key, singleCharacterData.Value);
+                    CharacterFrequencyView.Rows.Add(row);
+                    CharacterFrequencyView.Sort(CharacterFrequencyView.Columns[1], ListSortDirection.Descending);
+                }
+                CharacterFrequencyView.Rows[0].Selected = true;
             }
-            CharacterFrequencyView.Rows[0].Selected = true;
 
             return characterCount;
         }

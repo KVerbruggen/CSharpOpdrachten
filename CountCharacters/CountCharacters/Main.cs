@@ -12,12 +12,12 @@ namespace CountCharacters
     public static class Main
     {
 
-        public static Dictionary<string, int> LoadFile(string[] fileLocations, out int characterCount)
+        public static int LoadFile(string[] fileLocations, out Dictionary<string, int> characterFrequencies)
         {
-            characterCount = 0;
+            int characterCount = 0;
 
             string data = String.Empty;
-            Dictionary<string, int> characterFrequencyDictionary = new Dictionary<string, int>();
+            characterFrequencies = new Dictionary<string, int>();
 
             foreach (string fileLocation in fileLocations)
             {
@@ -49,19 +49,19 @@ namespace CountCharacters
                     {
                         stringToAdd = character.ToString();
                     }
-                    if (characterFrequencyDictionary.ContainsKey(stringToAdd))
+                    if (characterFrequencies.ContainsKey(stringToAdd))
                     {
-                        characterFrequencyDictionary[stringToAdd]++;
+                        characterFrequencies[stringToAdd]++;
                     }
                     else
                     {
-                        characterFrequencyDictionary.Add(stringToAdd, 1);
+                        characterFrequencies.Add(stringToAdd, 1);
                     }
                     characterCount++;
                 }
             }
 
-            return characterFrequencyDictionary;
+            return characterCount;
 
         }
 
