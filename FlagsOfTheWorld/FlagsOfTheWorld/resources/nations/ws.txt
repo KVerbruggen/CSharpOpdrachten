@@ -1,0 +1,2 @@
+ID: ws
+Name: Samoa
