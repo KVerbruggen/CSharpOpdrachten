@@ -1,0 +1,3 @@
+Name: Western Europe
+Icon: western-europe.png
+FlagIDs: ad, at, be, ch, de, es, fr, gb, ie, is, it, lu, mc, mt, nl, no, pt, se, sm, va

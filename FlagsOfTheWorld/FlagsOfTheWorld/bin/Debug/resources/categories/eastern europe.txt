@@ -1,0 +1,3 @@
+Name: Eastern Europe
+Icon: eastern-europe.png
+FlagIDs: al, am, az, ba, bg, by, cy, cz, ee, fi, ge, gr, hr, hu, ks, lt, lv, md, me, mk, pl, ro, rs, ru, si, sk, tr, ua

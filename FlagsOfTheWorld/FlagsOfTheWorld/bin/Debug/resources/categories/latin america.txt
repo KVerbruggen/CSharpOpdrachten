@@ -1,0 +1,3 @@
+Name: Latin America
+Icon: latin-america.png
+FlagIDs: ag, ar, bb, bo, br, cl, co, cr, cu, do, ec, gd, gt, hn, ht, kn, lc, mx, ni, pa, pe, py, sv, tt, uy, vc, ve

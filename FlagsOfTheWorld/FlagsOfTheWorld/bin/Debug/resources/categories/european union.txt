@@ -1,0 +1,3 @@
+Name: European Union
+Icon: eu.png
+FlagIDs: at, be, bg, hr, cy, cz, dk, ee, fi, fr, de, gr, hu, it, lv, lt, lu, mt, nl, pl, pt, ie, ro, sk, si, es, se, gb
