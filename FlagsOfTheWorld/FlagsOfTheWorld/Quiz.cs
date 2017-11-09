@@ -25,8 +25,13 @@ namespace FlagsOfTheWorld
             Flags = new List<Flag>();
             Flags = flags.ToList();
             Main.Shuffle(Flags);
-            Flags = Flags.Take<Flag>(amountOfQuestions).ToList();
+            Flags = Flags.Take(amountOfQuestions).ToList();
             QuestionIndex = 0;
+        }
+
+        public int GetQuestionCount()
+        {
+            return Flags.Count;
         }
 
         public Flag GetNextQuestion()

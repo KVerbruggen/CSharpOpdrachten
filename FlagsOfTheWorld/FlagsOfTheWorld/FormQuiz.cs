@@ -33,6 +33,7 @@ namespace FlagsOfTheWorld
             SubmitButton = btSubmit;
             this.Text = "Flags of the World - " + category.Name;
             Quiz = new Quiz(category.Flags, numberOfQuestions);
+            numberOfQuestions = Quiz.GetQuestionCount();
             LoadNextQuestion();
             ShowQuestion();
         }
