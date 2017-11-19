@@ -6,25 +6,31 @@ using System.Threading.Tasks;
 
 namespace Yahtzee
 {
-    public enum UpperScoreType
+    public enum ScoreType
     {
-        THREEOFAKIND,
-        FOUROFAKIND,
-        SMALLSTRAIGHT,
-        LARGESTRAIGHT,
-        FULLHOUSE,
-        YAHTZEE
+        UPPERONE = 1,
+        UPPERTWO = 2,
+        UPPERTHREE = 3,
+        UPPERFOUR = 4,
+        UPPERFIVE = 5,
+        UPPERSIX = 6,
+        THREEOFAKIND = 7,
+        FOUROFAKIND = 8,
+        SMALLSTRAIGHT = 9,
+        LARGESTRAIGHT = 10,
+        FULLHOUSE = 11,
+        YAHTZEE = 12
     }
 
     public class Yahtzee
     {
         private Random random = new Random();
+
         private bool gameStarted = false;
         private bool hadYahtzee = false;
-        private int currentPlayer = 1;
         private int nrOfPlayers = 0;
 
-        private int[] TotalScore { get; set; }
+        public int?[][] Scores { get; private set; }
         private int[] Dice { get; set; }
         public int NrOfPlayers
         {
@@ -37,6 +43,8 @@ namespace Yahtzee
                 }
             }
         }
+        public int CurrentPlayer { get; private set; }
+        public int CurrentRoll { get; private set; }
 
         public Yahtzee(int nrOfPlayers = 1)
         {
@@ -44,16 +52,33 @@ namespace Yahtzee
             this.nrOfPlayers = nrOfPlayers;
         }
 
-        public int[] RollDice(bool[] rollDie)
+        public void StartGame()
         {
+            Scores = new int?[nrOfPlayers][];
+            for (int i = 0; i < nrOfPlayers; i++)
+            {
+                Scores[i] = new int?[Enum.GetNames(typeof(ScoreType)).Length];
+            }
+            gameStarted = true;
+            CurrentPlayer = 0;
+            CurrentRoll = 0;
+            Dice = new int[5];
+        }
+        public int[] RollDice(bool[] diceToRoll = null)
+        {
+            diceToRoll = diceToRoll ?? new bool[]{ true, true, true, true, true };
             if (!gameStarted)
             {
-                TotalScore = new int[nrOfPlayers];
-                Array.Clear(TotalScore, 0, TotalScore.Count());
+                StartGame();
+            }
+            CurrentRoll = (CurrentRoll + 1) % 4;
+            if (CurrentRoll == 0)
+            {
+                return null;
             }
             for (int i = 0; i < Dice.Count(); i++)
             {
-                if (rollDie[i])
+                if (diceToRoll[i])
                 {
                     Dice[i] = random.Next(1, 7);
                 }
@@ -61,68 +86,75 @@ namespace Yahtzee
             return Dice;
         }
 
-        public int[] RollDice()
-        {
-            return RollDice(new bool[] { true, true, true, true, true });
-        }
-
-        public int CalculateScore(int lowerScoreType, int[] dice)
+        private int CalculateScore(int upperScoreType)
         {
             int score = 0;
-            foreach (int die in dice)
+            foreach (int die in Dice)
             {
-                if (die == lowerScoreType)
+                if (die == upperScoreType)
                 {
-                    score += lowerScoreType;
+                    score += upperScoreType;
                 }
             }
-            TotalScore[currentPlayer] += score;
-
-            currentPlayer = (currentPlayer + 1) % nrOfPlayers;
 
             return score;
         }
 
-        public int CalculateScore(UpperScoreType upperScoreType, int[] dice)
+        public int CalculateScore(ScoreType scoreType)
         {
             int score = 0;
-            switch (upperScoreType)
+            if ((int)scoreType <= 6)
             {
-                case UpperScoreType.THREEOFAKIND:
-                    score = XOfAKind(3, dice);
-                    break;
-                case UpperScoreType.FOUROFAKIND:
-                    score = XOfAKind(4, dice);
-                    break;
-                case UpperScoreType.SMALLSTRAIGHT:
-                    // TO-DO
-                    break;
-                case UpperScoreType.LARGESTRAIGHT:
-                    // TO-DO
-                    break;
-                case UpperScoreType.FULLHOUSE:
-                    // TO-DO
-                    break;
-                case UpperScoreType.YAHTZEE:
-                    if (IsYahtzee(dice))
-                    {
-                        if (hadYahtzee)
-                        {
-                            score = 100;
-                        }
-                        else
-                        {
-                            hadYahtzee = true;
-                            score = 50;
-                        }
-                    }
-                    break;
+                score = CalculateScore((int)scoreType);
             }
-            TotalScore[currentPlayer] += score;
+            else
+            {
+                switch (scoreType)
+                {
+                    case ScoreType.THREEOFAKIND:
+                        score = XOfAKind(3, Dice);
+                        break;
+                    case ScoreType.FOUROFAKIND:
+                        score = XOfAKind(4, Dice);
+                        break;
+                    case ScoreType.SMALLSTRAIGHT:
+                        // TO-DO
+                        break;
+                    case ScoreType.LARGESTRAIGHT:
+                        // TO-DO
+                        break;
+                    case ScoreType.FULLHOUSE:
+                        // TO-DO
+                        break;
+                    case ScoreType.YAHTZEE:
+                        if (IsYahtzee(Dice))
+                        {
+                            if (hadYahtzee)
+                            {
+                                score = 100;
+                            }
+                            else
+                            {
+                                hadYahtzee = true;
+                                score = 50;
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            Scores[CurrentPlayer][((int)scoreType) - 1] = score;
 
-            currentPlayer = (currentPlayer + 1) % nrOfPlayers;
+            EndTurn();
 
             return score;
+        }
+
+        private void EndTurn()
+        {
+            CurrentPlayer = (CurrentPlayer + 1) % nrOfPlayers;
+            CurrentRoll = 0;
         }
 
         private static bool IsYahtzee(int[] dice)
@@ -154,6 +186,19 @@ namespace Yahtzee
                 }
             }
             return 0;
+        }
+
+        public int GetTotalScore(int player)
+        {
+            int totalScore = 0;
+            foreach (int? i in Scores[player])
+            {
+                if (i != null)
+                {
+                    totalScore += (int)i;
+                }
+            }
+            return totalScore;
         }
     }
 }
