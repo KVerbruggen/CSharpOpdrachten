@@ -58,6 +58,7 @@
             this.btLargeStraight = new ButtonScore(ScoreType.LARGESTRAIGHT);
             this.btFullHouse = new ButtonScore(ScoreType.FULLHOUSE);
             this.btYahtzee = new ButtonScore(ScoreType.YAHTZEE);
+            this.btChance = new ButtonScore(ScoreType.CHANCE);
             this.lblTotalScore = new System.Windows.Forms.Label();
             this.flowLayoutPanelDice = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStripMain.SuspendLayout();
@@ -153,7 +154,7 @@
             this.dataGridViewScore.RowHeadersVisible = false;
             this.dataGridViewScore.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewScore.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullColumnSelect;
-            this.dataGridViewScore.Size = new System.Drawing.Size(58, 355);
+            this.dataGridViewScore.Size = new System.Drawing.Size(58, 377);
             this.dataGridViewScore.TabIndex = 20;
             this.dataGridViewScore.DefaultCellStyle.SelectionBackColor = this.dataGridViewScore.DefaultCellStyle.BackColor;
             this.dataGridViewScore.DefaultCellStyle.SelectionForeColor = this.dataGridViewScore.DefaultCellStyle.ForeColor;
@@ -343,12 +344,24 @@
             this.btYahtzee.UseVisualStyleBackColor = true;
             this.btYahtzee.Click += new System.EventHandler(this.btScore_Click);
             // 
+            // btChance
+            // 
+            this.btChance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btChance.Enabled = false;
+            this.btChance.Location = new System.Drawing.Point(16, 463);
+            this.btChance.Name = "btChance";
+            this.btChance.Size = new System.Drawing.Size(82, 23);
+            this.btChance.TabIndex = 16;
+            this.btChance.Text = "Chance";
+            this.btChance.UseVisualStyleBackColor = true;
+            this.btChance.Click += new System.EventHandler(this.btScore_Click);
+            // 
             // lblTotalScore
             // 
             this.lblTotalScore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotalScore.AutoSize = true;
             this.lblTotalScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalScore.Location = new System.Drawing.Point(15, 467);
+            this.lblTotalScore.Location = new System.Drawing.Point(15, 489);
             this.lblTotalScore.Name = "lblTotalScore";
             this.lblTotalScore.Size = new System.Drawing.Size(40, 13);
             this.lblTotalScore.TabIndex = 17;
@@ -368,26 +381,27 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(493, 495);
-            this.Controls.Add(this.lblTotalScore);
-            this.Controls.Add(this.btYahtzee);
-            this.Controls.Add(this.btRoll);
-            this.Controls.Add(this.btFullHouse);
-            this.Controls.Add(this.btLargeStraight);
-            this.Controls.Add(this.btSmallStraight);
-            this.Controls.Add(this.lblLower);
-            this.Controls.Add(this.bt4OfAKind);
-            this.Controls.Add(this.bt3OfAKind);
-            this.Controls.Add(this.btUpper6);
-            this.Controls.Add(this.btUpper5);
-            this.Controls.Add(this.btUpper4);
-            this.Controls.Add(this.btUpper3);
-            this.Controls.Add(this.lblUpper);
-            this.Controls.Add(this.btUpper2);
-            this.Controls.Add(this.btUpper1);
-            this.Controls.Add(this.dataGridViewScore);
-            this.Controls.Add(this.panelDice);
+            this.ClientSize = new System.Drawing.Size(493, 517);
             this.Controls.Add(this.menuStripMain);
+            this.Controls.Add(this.panelDice);
+            this.Controls.Add(this.btRoll);
+            this.Controls.Add(this.lblUpper);
+            this.Controls.Add(this.btUpper1);
+            this.Controls.Add(this.btUpper2);
+            this.Controls.Add(this.btUpper3);
+            this.Controls.Add(this.btUpper4);
+            this.Controls.Add(this.btUpper5);
+            this.Controls.Add(this.btUpper6);
+            this.Controls.Add(this.lblLower);
+            this.Controls.Add(this.bt3OfAKind);
+            this.Controls.Add(this.bt4OfAKind);
+            this.Controls.Add(this.btSmallStraight);
+            this.Controls.Add(this.btLargeStraight);
+            this.Controls.Add(this.btFullHouse);
+            this.Controls.Add(this.btYahtzee);
+            this.Controls.Add(this.btChance);
+            this.Controls.Add(this.lblTotalScore);
+            this.Controls.Add(this.dataGridViewScore);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStripMain;
             this.MinimumSize = new System.Drawing.Size(509, 534);
@@ -431,6 +445,7 @@
         private ButtonScore btLargeStraight;
         private ButtonScore btFullHouse;
         private ButtonScore btYahtzee;
+        private ButtonScore btChance;
         private System.Windows.Forms.Label lblTotalScore;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelDice;
     }

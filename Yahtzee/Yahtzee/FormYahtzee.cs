@@ -24,8 +24,6 @@ namespace Yahtzee
 
         public FormYahtzee()
         {
-            // TO-DO: Select columnheader to indicate current player.
-            // TO-DO: End game/show winner
             InitializeComponent();
             LoadDieGBs();
             LoadImages();
@@ -108,6 +106,7 @@ namespace Yahtzee
             scoreButtons.Add(btLargeStraight);
             scoreButtons.Add(btFullHouse);
             scoreButtons.Add(btYahtzee);
+            scoreButtons.Add(btChance);
         }
 
         private void LoadGridViewColumns(int currentAmountOfPlayers, int toAdd)
@@ -192,12 +191,10 @@ namespace Yahtzee
 
         private void SetScoreButtons()
         {
-            for (int i = 0; i < scoreButtons.Count - 1; i++)
-            {
-                bool enable = (Game.Scores[Game.CurrentPlayer][i] == null);
-                scoreButtons[i].Enabled = enable;
+            for (int i = 0; i < scoreButtons.Count; i++)
+            { 
+                scoreButtons[i].Enabled = ((Game.Scores[Game.CurrentPlayer][i] == null) || ((i + 1) == (int)ScoreType.YAHTZEE));
             }
-            scoreButtons[scoreButtons.Count - 1].Enabled = true;
         }
 
         private void ResetGridView()
@@ -206,7 +203,7 @@ namespace Yahtzee
             dataGridViewScore.Columns.Clear();
 
             LoadGridViewColumns(0, Game.NrOfPlayers);
-            dataGridViewScore.Rows.Add(15);
+            dataGridViewScore.Rows.Add(16);
 
             dataGridViewScore.Columns[0].Selected = true;
         }
@@ -305,6 +302,16 @@ namespace Yahtzee
             dataGridViewScore.Columns[Game.CurrentPlayer].Selected = true;
         }
 
+        private void Finish()
+        {
+            gameFinished = true;
+            ResetButtons();
+            ResetCheckBoxes();
+            btRoll.Enabled = false;
+
+            MessageBox.Show("Player " + (Game.CurrentPlayer + 1) + " has won with a score of " + Game.GetTotalScore(Game.CurrentPlayer) + "." + Environment.NewLine + "Congratulations!");
+        }
+
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ResetButtons();
@@ -346,6 +353,7 @@ namespace Yahtzee
             {
                 RollDiceRandom();
                 UpdateDice(Game.RollDice().Cast<int?>().ToArray());
+                SetScoreButtons();
             }
             else
             {
@@ -365,7 +373,6 @@ namespace Yahtzee
             else
             {
                 EnableCheckBoxes();
-                SetScoreButtons();
             }
         }
 
@@ -375,8 +382,14 @@ namespace Yahtzee
             {
                 ScoreType scoreType = ((ButtonScore)sender).ScoreType;
                 SetScore(Game.CurrentPlayer, scoreType, Game.CalculateScore(scoreType), Game.GetTotalScore(Game.CurrentPlayer));
-                Game.EndTurn();
-                EndTurn();
+                if (Game.EndTurn())
+                {
+                    Finish();
+                }
+                else
+                {
+                    EndTurn();
+                }
             }
         }
     }

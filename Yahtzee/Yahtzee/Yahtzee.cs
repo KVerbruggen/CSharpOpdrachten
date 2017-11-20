@@ -19,7 +19,8 @@ namespace Yahtzee
         SMALLSTRAIGHT = 9,
         LARGESTRAIGHT = 10,
         FULLHOUSE = 11,
-        YAHTZEE = 12
+        YAHTZEE = 12,
+        CHANCE = 13
     }
 
     public class Yahtzee
@@ -27,7 +28,7 @@ namespace Yahtzee
         private Random random = new Random();
 
         private bool gameStarted = false;
-        private bool hadYahtzee = false;
+        private bool[] hadYahtzee;
         private int nrOfPlayers = 0;
 
         public int?[][] Scores { get; private set; }
@@ -63,6 +64,7 @@ namespace Yahtzee
             CurrentPlayer = 0;
             CurrentRoll = 0;
             Dice = new int[5];
+            hadYahtzee = new bool[nrOfPlayers];
         }
         public int[] RollDice(bool[] diceToRoll = null)
         {
@@ -83,6 +85,7 @@ namespace Yahtzee
                     Dice[i] = random.Next(1, 7);
                 }
             }
+            Dice = new int[] { 6, 6, 6, 6, 6 };
             return Dice;
         }
 
@@ -148,31 +151,71 @@ namespace Yahtzee
                         */
                         if (IsXOfAKind(5, Dice))
                         {
-                            if (hadYahtzee)
+                            if (hadYahtzee[CurrentPlayer])
                             {
                                 score = 100;
                             }
                             else
                             {
                                 score = 50;
-                                hadYahtzee = true;
+                                hadYahtzee[CurrentPlayer] = true;
                             }
                         }
+                        break;
+                    case ScoreType.CHANCE:
+                        score = Dice.Sum();
                         break;
                     default:
                         break;
                 }
             }
-            Scores[CurrentPlayer][((int)scoreType) - 1] = score;
+            ref int? currentScore = ref Scores[CurrentPlayer][((int)scoreType) - 1];
+            if (currentScore != null)
+            {
+                score += (int)currentScore;
+            }
+            currentScore = score;
 
             return score;
         }
 
-        public void EndTurn()
+        public bool EndTurn()
         {
-            CurrentPlayer = (CurrentPlayer + 1) % nrOfPlayers;
+            int player = CurrentPlayer;
+            int amountFinished = 0;
+            for (int i = 0; i < nrOfPlayers; i++)
+            {
+                if (CheckFinished(i))
+                {
+                    amountFinished++;
+                }
+            }
+            if (amountFinished == nrOfPlayers)
+            {
+                return true;
+            }
+            do
+            {
+                player = (player + 1) % nrOfPlayers;
+            }
+            while (CheckFinished(player));
+            CurrentPlayer = player;
             CurrentRoll = 0;
+            return false;
         }
+
+        public bool CheckFinished(int player)
+        {
+            foreach (int? score in Scores[player])
+            {
+                if (score == null)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
 
         /*
         // Deprecated function "IsYahtzee". Not necessary because of IsXOfAKind, but slightly faster.
