@@ -12,6 +12,8 @@ namespace Yahtzee
 {
     public partial class FormYahtzee : Form
     {
+        private Random random = new Random();
+
         private Yahtzee Game;
 
         private bool gameStarted;
@@ -76,7 +78,7 @@ namespace Yahtzee
                 // 
                 // flowLayoutPanel1
                 // 
-                this.flowLayoutPanel1.Controls.Add(gbDie);
+                this.flowLayoutPanelDice.Controls.Add(gbDie);
                 dieControls.Add(i + 1, new Tuple<PictureBox, CheckBox>(pbDie, cbDie));
             }
         }
@@ -112,7 +114,14 @@ namespace Yahtzee
         {
             for (int i = currentAmountOfPlayers + 1; i <= (currentAmountOfPlayers + toAdd); i++)
             {
-                dataGridViewScore.Columns.Add("Player " + i, "Player " + i);
+                dataGridViewScore.Columns.Add(
+                    new DataGridViewColumn() {
+                        Name = "Player " + i,
+                        HeaderText = "Player " + i,
+                        CellTemplate = new DataGridViewTextBoxCell(),
+                        SortMode = DataGridViewColumnSortMode.NotSortable
+                    }
+                );
                 dataGridViewScore.Columns[dataGridViewScore.Columns.Count - 1].Width = 55;
             }
             addPlayerToolStripMenuItem.Enabled = (Game.NrOfPlayers < 6);
@@ -155,6 +164,14 @@ namespace Yahtzee
             }
         }
 
+        private void ResetCheckBoxes()
+        {
+            foreach (KeyValuePair<int, Tuple<PictureBox, CheckBox>> dieControlPair in dieControls)
+            {
+                dieControlPair.Value.Item2.Checked = false;
+            }
+        }
+
         private void EnableScoreButtons()
         {
             foreach(Button button in scoreButtons)
@@ -191,7 +208,7 @@ namespace Yahtzee
             LoadGridViewColumns(0, Game.NrOfPlayers);
             dataGridViewScore.Rows.Add(15);
 
-            dataGridViewScore.Rows[0].Cells[0].Selected = false;
+            dataGridViewScore.Columns[0].Selected = true;
         }
 
         private void SetScore(int currentPlayer, ScoreType scoreType, int score, int totalScore)
@@ -207,6 +224,28 @@ namespace Yahtzee
             }
             dataGridViewScore.Rows[rowNr].Cells[currentPlayer].Value = score;
             dataGridViewScore.Rows[dataGridViewScore.Rows.Count - 1].Cells[currentPlayer].Value = totalScore;
+        }
+
+        private void RollDiceRandom(bool[] diceToRoll = null)
+        {
+            diceToRoll = diceToRoll ?? new bool[] { true, true, true, true, true };
+            for (int i = 0; i < 20; i++)
+            {
+                for (int i2 = 0; i2 < 5; i2++)
+                {
+                    if (diceToRoll[i2])
+                    {
+                        PictureBox pbDie = dieControls[i2 + 1].Item1;
+                        pbDie.Image = imageListDice.Images["die_" + random.Next(1, 7)];
+                        if (pbDie.Image == null)
+                        {
+                            pbDie.Image = imageListDice.Images["die_empty"];
+                        }
+                    }
+                }
+                this.Refresh();
+                System.Threading.Thread.Sleep(25);
+            }
         }
 
         private void UpdateDice(int?[] dice)
@@ -261,6 +300,9 @@ namespace Yahtzee
         {
             ResetButtons();
             DisableCheckBoxes();
+            ResetCheckBoxes();
+            UpdateDice(new int?[] { null, null, null, null, null });
+            dataGridViewScore.Columns[Game.CurrentPlayer].Selected = true;
         }
 
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -302,6 +344,7 @@ namespace Yahtzee
             }
             if (Game.CurrentRoll == 0)
             {
+                RollDiceRandom();
                 UpdateDice(Game.RollDice().Cast<int?>().ToArray());
             }
             else
@@ -311,6 +354,7 @@ namespace Yahtzee
                 {
                     diceToRoll[i] = !dieControls[i + 1].Item2.Checked;
                 }
+                RollDiceRandom(diceToRoll);
                 UpdateDice(Game.RollDice(diceToRoll).Cast<int?>().ToArray());
             }
             if (Game.CurrentRoll == 3)
@@ -331,8 +375,9 @@ namespace Yahtzee
             {
                 ScoreType scoreType = ((ButtonScore)sender).ScoreType;
                 SetScore(Game.CurrentPlayer, scoreType, Game.CalculateScore(scoreType), Game.GetTotalScore(Game.CurrentPlayer));
+                Game.EndTurn();
+                EndTurn();
             }
-            EndTurn();
         }
     }
 }

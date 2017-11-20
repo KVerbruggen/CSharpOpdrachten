@@ -112,22 +112,41 @@ namespace Yahtzee
                 switch (scoreType)
                 {
                     case ScoreType.THREEOFAKIND:
-                        score = XOfAKind(3, Dice);
+                        if(IsXOfAKind(3, Dice))
+                        {
+                            score = Dice.Sum();
+                        }
                         break;
                     case ScoreType.FOUROFAKIND:
-                        score = XOfAKind(4, Dice);
+                        if (IsXOfAKind(4, Dice))
+                        {
+                            score = Dice.Sum();
+                        }
                         break;
                     case ScoreType.SMALLSTRAIGHT:
-                        // TO-DO
+                        if (HasConsecutiveFaces(4, Dice))
+                        {
+                            score = 30;
+                        }
                         break;
                     case ScoreType.LARGESTRAIGHT:
-                        // TO-DO
+                        if (HasConsecutiveFaces(5, Dice))
+                        {
+                            score = 40;
+                        }
                         break;
                     case ScoreType.FULLHOUSE:
-                        // TO-DO
+                        if (IsFullHouse(Dice))
+                        {
+                            score = 25;
+                        }
                         break;
                     case ScoreType.YAHTZEE:
+                        /*
+                        // deprecated function
                         if (IsYahtzee(Dice))
+                        */
+                        if (IsXOfAKind(5, Dice))
                         {
                             if (hadYahtzee)
                             {
@@ -135,8 +154,8 @@ namespace Yahtzee
                             }
                             else
                             {
-                                hadYahtzee = true;
                                 score = 50;
+                                hadYahtzee = true;
                             }
                         }
                         break;
@@ -146,17 +165,17 @@ namespace Yahtzee
             }
             Scores[CurrentPlayer][((int)scoreType) - 1] = score;
 
-            EndTurn();
-
             return score;
         }
 
-        private void EndTurn()
+        public void EndTurn()
         {
             CurrentPlayer = (CurrentPlayer + 1) % nrOfPlayers;
             CurrentRoll = 0;
         }
 
+        /*
+        // Deprecated function "IsYahtzee". Not necessary because of IsXOfAKind, but slightly faster.
         private static bool IsYahtzee(int[] dice)
         {
             for (int i = 1; i < dice.Count(); i++)
@@ -168,24 +187,59 @@ namespace Yahtzee
             }
             return true;
         }
-
-        private static int XOfAKind(int x, int[] dice)
+        */
+        
+        /*
+        // New possible short version for IsYahtzee. Still not necessary because of IsXOfAkind
+        private static bool IsYahtzee(int[] dice)
         {
-            int score = 0;
-            int[] amountOfNumber = new int[6] { 0, 0, 0, 0, 0, 0 };
+            return NumberAmounts(dice).Contains(5);
+        }
+        */
+
+        private static bool IsXOfAKind(int x, int[] dice)
+        {
+            // Check if collection contains item larger than x.
+            // Based on: https://stackoverflow.com/questions/13972621/check-whether-the-list-contains-item-greater-than-a-value-in-c-sharp
+            return NumberAmounts(dice).Any(number => number >= x);
+        }
+
+        private static int[] NumberAmounts(int[] dice)
+        {
+            int[] numberAmount = new int[6] { 0, 0, 0, 0, 0, 0 };
             foreach (int die in dice)
             {
-                amountOfNumber[die - 1]++;
-                score += die;
+                numberAmount[die - 1]++;
             }
-            foreach (int numberAmount in amountOfNumber)
+            return numberAmount;
+        }
+
+        private static bool HasConsecutiveFaces(int amountOfConsecutiveFaces, int[] dice)
+        {
+            int lowestFace = dice.Min();
+            for (int i = 0; i < amountOfConsecutiveFaces; i++)
             {
-                if (numberAmount >= x)
+                int currentFaceToCheck = lowestFace + i;
+                bool found = false;
+                foreach (int die in dice)
                 {
-                    return score;
+                    if (die == currentFaceToCheck)
+                    {
+                        found = true;
+                    }
+                }
+                if (!found)
+                {
+                    return false;
                 }
             }
-            return 0;
+            return true;
+        }
+
+        private static bool IsFullHouse(int[] dice)
+        {
+            int[] numberAmount = NumberAmounts(dice);
+            return (numberAmount.Contains(3) && numberAmount.Contains(2));
         }
 
         public int GetTotalScore(int player)
