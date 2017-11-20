@@ -29,7 +29,7 @@ namespace Yahtzee
 
         private bool gameStarted = false;
         private bool[] hadYahtzee;
-        private int nrOfPlayers = 0;
+        private int nrOfPlayers;
 
         public int?[][] Scores { get; private set; }
         private int[] Dice { get; set; }
@@ -49,7 +49,6 @@ namespace Yahtzee
 
         public Yahtzee(int nrOfPlayers = 1)
         {
-            Dice = new int[5];
             this.nrOfPlayers = nrOfPlayers;
         }
 
@@ -85,7 +84,8 @@ namespace Yahtzee
                     Dice[i] = random.Next(1, 7);
                 }
             }
-            Dice = new int[] { 6, 6, 6, 6, 6 };
+            // Was used to test Yahtzee-scoremode
+            // Dice = new int[] { 6, 6, 6, 6, 6 };
             return Dice;
         }
 
@@ -296,6 +296,22 @@ namespace Yahtzee
                 }
             }
             return totalScore;
+        }
+
+        public int GetWinner()
+        {
+            int maxScore = 0;
+            int winningPlayer = 0;
+            for(int i = 0; i < nrOfPlayers; i++)
+            {
+                int score = (int)Scores[i].Sum();
+                if (score > maxScore)
+                {
+                    maxScore = (int)Scores[i].Sum();
+                    winningPlayer = i;
+                }
+            }
+            return winningPlayer;
         }
     }
 }

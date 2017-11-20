@@ -7,8 +7,6 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        public System.ComponentModel.ComponentResourceManager resources;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -31,7 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            resources = new System.ComponentModel.ComponentResourceManager(typeof(FormYahtzee));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormYahtzee));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,7 +41,7 @@
             this.removePlayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageListDice = new System.Windows.Forms.ImageList(this.components);
             this.dataGridViewScore = new System.Windows.Forms.DataGridView();
-            this.panelDice = new System.Windows.Forms.Panel();
+            this.flowLayoutPanelDice = new System.Windows.Forms.FlowLayoutPanel();
             this.btRoll = new System.Windows.Forms.Button();
             this.lblUpper = new System.Windows.Forms.Label();
             this.btUpper1 = new ButtonScore(1);
@@ -60,11 +59,8 @@
             this.btYahtzee = new ButtonScore(ScoreType.YAHTZEE);
             this.btChance = new ButtonScore(ScoreType.CHANCE);
             this.lblTotalScore = new System.Windows.Forms.Label();
-            this.flowLayoutPanelDice = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewScore)).BeginInit();
-            this.panelDice.SuspendLayout();
-            this.flowLayoutPanelDice.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripMain
@@ -146,8 +142,16 @@
             this.dataGridViewScore.AllowUserToResizeColumns = false;
             this.dataGridViewScore.AllowUserToResizeRows = false;
             this.dataGridViewScore.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewScore.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewScore.Enabled = false;
-            this.dataGridViewScore.Location = new System.Drawing.Point(99, 132);
+            this.dataGridViewScore.Location = new System.Drawing.Point(103, 134);
             this.dataGridViewScore.MultiSelect = false;
             this.dataGridViewScore.Name = "dataGridViewScore";
             this.dataGridViewScore.ReadOnly = true;
@@ -156,21 +160,18 @@
             this.dataGridViewScore.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullColumnSelect;
             this.dataGridViewScore.Size = new System.Drawing.Size(58, 377);
             this.dataGridViewScore.TabIndex = 20;
-            this.dataGridViewScore.DefaultCellStyle.SelectionBackColor = this.dataGridViewScore.DefaultCellStyle.BackColor;
-            this.dataGridViewScore.DefaultCellStyle.SelectionForeColor = this.dataGridViewScore.DefaultCellStyle.ForeColor;
             // 
-            // panelDice
+            // flowLayoutPanelDice
             // 
-            this.panelDice.Controls.Add(this.flowLayoutPanelDice);
-            this.panelDice.Location = new System.Drawing.Point(12, 27);
-            this.panelDice.Name = "panelDice";
-            this.panelDice.Size = new System.Drawing.Size(379, 99);
-            this.panelDice.TabIndex = 1;
+            this.flowLayoutPanelDice.Location = new System.Drawing.Point(12, 27);
+            this.flowLayoutPanelDice.Name = "flowLayoutPanelDice";
+            this.flowLayoutPanelDice.Size = new System.Drawing.Size(375, 102);
+            this.flowLayoutPanelDice.TabIndex = 21;
             // 
             // btRoll
             // 
             this.btRoll.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btRoll.Location = new System.Drawing.Point(397, 35);
+            this.btRoll.Location = new System.Drawing.Point(390, 35);
             this.btRoll.Name = "btRoll";
             this.btRoll.Size = new System.Drawing.Size(84, 84);
             this.btRoll.TabIndex = 2;
@@ -183,7 +184,7 @@
             this.lblUpper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblUpper.AutoSize = true;
             this.lblUpper.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpper.Location = new System.Drawing.Point(15, 161);
+            this.lblUpper.Location = new System.Drawing.Point(15, 163);
             this.lblUpper.Name = "lblUpper";
             this.lblUpper.Size = new System.Drawing.Size(82, 13);
             this.lblUpper.TabIndex = 3;
@@ -193,7 +194,7 @@
             // 
             this.btUpper1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btUpper1.Enabled = false;
-            this.btUpper1.Location = new System.Drawing.Point(16, 177);
+            this.btUpper1.Location = new System.Drawing.Point(16, 179);
             this.btUpper1.Name = "btUpper1";
             this.btUpper1.Size = new System.Drawing.Size(82, 23);
             this.btUpper1.TabIndex = 4;
@@ -205,7 +206,7 @@
             // 
             this.btUpper2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btUpper2.Enabled = false;
-            this.btUpper2.Location = new System.Drawing.Point(16, 199);
+            this.btUpper2.Location = new System.Drawing.Point(16, 201);
             this.btUpper2.Name = "btUpper2";
             this.btUpper2.Size = new System.Drawing.Size(82, 23);
             this.btUpper2.TabIndex = 5;
@@ -217,7 +218,7 @@
             // 
             this.btUpper3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btUpper3.Enabled = false;
-            this.btUpper3.Location = new System.Drawing.Point(16, 221);
+            this.btUpper3.Location = new System.Drawing.Point(16, 223);
             this.btUpper3.Name = "btUpper3";
             this.btUpper3.Size = new System.Drawing.Size(82, 23);
             this.btUpper3.TabIndex = 6;
@@ -229,7 +230,7 @@
             // 
             this.btUpper4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btUpper4.Enabled = false;
-            this.btUpper4.Location = new System.Drawing.Point(16, 243);
+            this.btUpper4.Location = new System.Drawing.Point(16, 245);
             this.btUpper4.Name = "btUpper4";
             this.btUpper4.Size = new System.Drawing.Size(82, 23);
             this.btUpper4.TabIndex = 7;
@@ -241,7 +242,7 @@
             // 
             this.btUpper5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btUpper5.Enabled = false;
-            this.btUpper5.Location = new System.Drawing.Point(16, 265);
+            this.btUpper5.Location = new System.Drawing.Point(16, 267);
             this.btUpper5.Name = "btUpper5";
             this.btUpper5.Size = new System.Drawing.Size(82, 23);
             this.btUpper5.TabIndex = 8;
@@ -253,7 +254,7 @@
             // 
             this.btUpper6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btUpper6.Enabled = false;
-            this.btUpper6.Location = new System.Drawing.Point(16, 287);
+            this.btUpper6.Location = new System.Drawing.Point(16, 289);
             this.btUpper6.Name = "btUpper6";
             this.btUpper6.Size = new System.Drawing.Size(82, 23);
             this.btUpper6.TabIndex = 9;
@@ -266,7 +267,7 @@
             this.lblLower.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblLower.AutoSize = true;
             this.lblLower.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLower.Location = new System.Drawing.Point(15, 315);
+            this.lblLower.Location = new System.Drawing.Point(15, 317);
             this.lblLower.Name = "lblLower";
             this.lblLower.Size = new System.Drawing.Size(82, 13);
             this.lblLower.TabIndex = 12;
@@ -276,7 +277,7 @@
             // 
             this.bt3OfAKind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.bt3OfAKind.Enabled = false;
-            this.bt3OfAKind.Location = new System.Drawing.Point(16, 331);
+            this.bt3OfAKind.Location = new System.Drawing.Point(16, 333);
             this.bt3OfAKind.Name = "bt3OfAKind";
             this.bt3OfAKind.Size = new System.Drawing.Size(82, 23);
             this.bt3OfAKind.TabIndex = 10;
@@ -288,7 +289,7 @@
             // 
             this.bt4OfAKind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.bt4OfAKind.Enabled = false;
-            this.bt4OfAKind.Location = new System.Drawing.Point(16, 353);
+            this.bt4OfAKind.Location = new System.Drawing.Point(16, 355);
             this.bt4OfAKind.Name = "bt4OfAKind";
             this.bt4OfAKind.Size = new System.Drawing.Size(82, 23);
             this.bt4OfAKind.TabIndex = 11;
@@ -300,7 +301,7 @@
             // 
             this.btSmallStraight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btSmallStraight.Enabled = false;
-            this.btSmallStraight.Location = new System.Drawing.Point(16, 375);
+            this.btSmallStraight.Location = new System.Drawing.Point(16, 377);
             this.btSmallStraight.Name = "btSmallStraight";
             this.btSmallStraight.Size = new System.Drawing.Size(82, 23);
             this.btSmallStraight.TabIndex = 13;
@@ -312,7 +313,7 @@
             // 
             this.btLargeStraight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btLargeStraight.Enabled = false;
-            this.btLargeStraight.Location = new System.Drawing.Point(16, 397);
+            this.btLargeStraight.Location = new System.Drawing.Point(16, 399);
             this.btLargeStraight.Name = "btLargeStraight";
             this.btLargeStraight.Size = new System.Drawing.Size(82, 23);
             this.btLargeStraight.TabIndex = 14;
@@ -324,7 +325,7 @@
             // 
             this.btFullHouse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btFullHouse.Enabled = false;
-            this.btFullHouse.Location = new System.Drawing.Point(16, 419);
+            this.btFullHouse.Location = new System.Drawing.Point(16, 421);
             this.btFullHouse.Name = "btFullHouse";
             this.btFullHouse.Size = new System.Drawing.Size(82, 23);
             this.btFullHouse.TabIndex = 15;
@@ -336,7 +337,7 @@
             // 
             this.btYahtzee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btYahtzee.Enabled = false;
-            this.btYahtzee.Location = new System.Drawing.Point(16, 441);
+            this.btYahtzee.Location = new System.Drawing.Point(16, 443);
             this.btYahtzee.Name = "btYahtzee";
             this.btYahtzee.Size = new System.Drawing.Size(82, 23);
             this.btYahtzee.TabIndex = 16;
@@ -348,7 +349,7 @@
             // 
             this.btChance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btChance.Enabled = false;
-            this.btChance.Location = new System.Drawing.Point(16, 463);
+            this.btChance.Location = new System.Drawing.Point(16, 465);
             this.btChance.Name = "btChance";
             this.btChance.Size = new System.Drawing.Size(82, 23);
             this.btChance.TabIndex = 16;
@@ -361,29 +362,22 @@
             this.lblTotalScore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotalScore.AutoSize = true;
             this.lblTotalScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalScore.Location = new System.Drawing.Point(15, 489);
+            this.lblTotalScore.Location = new System.Drawing.Point(15, 491);
             this.lblTotalScore.Name = "lblTotalScore";
             this.lblTotalScore.Size = new System.Drawing.Size(40, 13);
             this.lblTotalScore.TabIndex = 17;
             this.lblTotalScore.Text = "Total:";
             // 
-            // flowLayoutPanelDice
-            // 
-            this.flowLayoutPanelDice.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanelDice.Name = "flowLayoutPanelDice";
-            this.flowLayoutPanelDice.Size = new System.Drawing.Size(379, 100);
-            this.flowLayoutPanelDice.TabIndex = 21;
-            // 
             // FormYahtzee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
+            this.AutoSize = false;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(493, 517);
+            this.ClientSize = new System.Drawing.Size(493, 520);
             this.Controls.Add(this.menuStripMain);
-            this.Controls.Add(this.panelDice);
+            this.Controls.Add(this.flowLayoutPanelDice);
             this.Controls.Add(this.btRoll);
             this.Controls.Add(this.lblUpper);
             this.Controls.Add(this.btUpper1);
@@ -410,8 +404,6 @@
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewScore)).EndInit();
-            this.panelDice.ResumeLayout(false);
-            this.flowLayoutPanelDice.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -427,7 +419,7 @@
         private System.Windows.Forms.DataGridView dataGridViewScore;
         private System.Windows.Forms.ToolStripMenuItem matchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addPlayerToolStripMenuItem;
-        private System.Windows.Forms.Panel panelDice;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelDice;
         private System.Windows.Forms.Button btRoll;
         private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removePlayerToolStripMenuItem;
@@ -447,7 +439,6 @@
         private ButtonScore btYahtzee;
         private ButtonScore btChance;
         private System.Windows.Forms.Label lblTotalScore;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelDice;
     }
 }
 

@@ -45,7 +45,6 @@ namespace Yahtzee
                 // 
                 gbDie.Controls.Add(pbDie);
                 gbDie.Controls.Add(cbDie);
-                gbDie.Location = new System.Drawing.Point(3 + (i * 74), 3);
                 gbDie.Name = "gbDie" + (i + 1);
                 gbDie.Size = new System.Drawing.Size(68, 89);
                 gbDie.TabIndex = i;
@@ -54,7 +53,7 @@ namespace Yahtzee
                 // pbDie
                 // 
                 pbDie.BackColor = System.Drawing.Color.Transparent;
-                pbDie.Image = ((System.Drawing.Image)(this.resources.GetObject("pbDie" + (i + 1) + ".Image")));
+                pbDie.Image = imageListDice.Images["die_empty"];
                 pbDie.Location = new System.Drawing.Point(6, 9);
                 pbDie.Name = "pbDie" + (i + 1);
                 pbDie.Size = new System.Drawing.Size(50, 50);
@@ -308,8 +307,15 @@ namespace Yahtzee
             ResetButtons();
             ResetCheckBoxes();
             btRoll.Enabled = false;
-
-            MessageBox.Show("Player " + (Game.CurrentPlayer + 1) + " has won with a score of " + Game.GetTotalScore(Game.CurrentPlayer) + "." + Environment.NewLine + "Congratulations!");
+            if (Game.NrOfPlayers == 1)
+            {
+                MessageBox.Show("You scored " + Game.GetTotalScore(0) + " points!");
+            }
+            else
+            {
+                int winningPlayer = Game.GetWinner();
+                MessageBox.Show("Congratulations Player " + (winningPlayer + 1) + "!" + Environment.NewLine + "You won with a score of " + Game.GetTotalScore(winningPlayer));
+            }
         }
 
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -351,6 +357,8 @@ namespace Yahtzee
             }
             if (Game.CurrentRoll == 0)
             {
+                ResetButtons();
+                btRoll.Enabled = false;
                 RollDiceRandom();
                 UpdateDice(Game.RollDice().Cast<int?>().ToArray());
                 SetScoreButtons();
@@ -362,8 +370,11 @@ namespace Yahtzee
                 {
                     diceToRoll[i] = !dieControls[i + 1].Item2.Checked;
                 }
+                ResetButtons();
+                btRoll.Enabled = false;
                 RollDiceRandom(diceToRoll);
                 UpdateDice(Game.RollDice(diceToRoll).Cast<int?>().ToArray());
+                SetScoreButtons();
             }
             if (Game.CurrentRoll == 3)
             {
@@ -373,6 +384,7 @@ namespace Yahtzee
             else
             {
                 EnableCheckBoxes();
+                btRoll.Enabled = true;
             }
         }
 
