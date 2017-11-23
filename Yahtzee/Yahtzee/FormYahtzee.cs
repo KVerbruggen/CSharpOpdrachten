@@ -14,19 +14,19 @@ namespace Yahtzee
     {
         private Random random = new Random();
 
-        private Yahtzee Game;
+        private YahtzeeInstance Game;
 
         private bool gameStarted;
         private bool gameFinished;
 
-        private Dictionary<int, Tuple<PictureBox, CheckBox>> dieControls = new Dictionary<int, Tuple<PictureBox, CheckBox>>();
-        private List<Button> scoreButtons = new List<Button>();
+        private DieControl[] dieControls;
+        private ButtonScore[] scoreButtons;
 
         public FormYahtzee()
         {
             InitializeComponent();
-            LoadDieGBs();
             LoadImages();
+            LoadDieGBs();
             LoadButtons();
             InitializeGame();
             removePlayerToolStripMenuItem.Enabled = false;
@@ -34,54 +34,20 @@ namespace Yahtzee
 
         private void LoadDieGBs()
         {
+            dieControls = new DieControl[5];
             for (int i = 0; i < 5; i++)
             {
-                GroupBox gbDie = new GroupBox();
-                CheckBox cbDie = new CheckBox();
-                PictureBox pbDie = new PictureBox();
-
-                // 
-                // gbDie
-                // 
-                gbDie.Controls.Add(pbDie);
-                gbDie.Controls.Add(cbDie);
-                gbDie.Name = "gbDie" + (i + 1);
-                gbDie.Size = new System.Drawing.Size(68, 89);
-                gbDie.TabIndex = i;
-                gbDie.TabStop = false;
-                // 
-                // pbDie
-                // 
-                pbDie.BackColor = System.Drawing.Color.Transparent;
-                pbDie.Image = imageListDice.Images["die_empty"];
-                pbDie.Location = new System.Drawing.Point(6, 9);
-                pbDie.Name = "pbDie" + (i + 1);
-                pbDie.Size = new System.Drawing.Size(50, 50);
-                pbDie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-                pbDie.TabIndex = i;
-                pbDie.TabStop = false;
-                // 
-                // cbDie
-                // 
-                cbDie.AutoSize = true;
-                cbDie.Location = new System.Drawing.Point(6, 66);
-                cbDie.Name = "cbDie" + (i + 1);
-                cbDie.Size = new System.Drawing.Size(50, 17);
-                cbDie.TabIndex = i;
-                cbDie.Text = "Lock";
-                cbDie.UseVisualStyleBackColor = true;
-                cbDie.Enabled = false;
-
-                // 
-                // flowLayoutPanel1
-                // 
-                this.flowLayoutPanelDice.Controls.Add(gbDie);
-                dieControls.Add(i + 1, new Tuple<PictureBox, CheckBox>(pbDie, cbDie));
+                dieControls[i] = new DieControl()
+                {
+                    Enabled = false
+                };
             }
+            this.flowLayoutPanelDice.Controls.AddRange(dieControls);
         }
 
         private void LoadImages()
         {
+            // Images can only be added *from files* through the designer. The images however are stored in the resources.resx, therefor the images need to be added programmatically.
             imageListDice.Images.Add("die_empty", Properties.Resources.die_empty);
             imageListDice.Images.Add("die_1", Properties.Resources.die_1);
             imageListDice.Images.Add("die_2", Properties.Resources.die_2);
@@ -93,22 +59,21 @@ namespace Yahtzee
 
         private void LoadButtons()
         {
-            // TO-DO
-            /*
-            scoreButtons.Add(btUpper1);
-            scoreButtons.Add(btUpper2);
-            scoreButtons.Add(btUpper3);
-            scoreButtons.Add(btUpper4);
-            scoreButtons.Add(btUpper5);
-            scoreButtons.Add(btUpper6);
-            scoreButtons.Add(bt3OfAKind);
-            scoreButtons.Add(bt4OfAKind);
-            scoreButtons.Add(btSmallStraight);
-            scoreButtons.Add(btLargeStraight);
-            scoreButtons.Add(btFullHouse);
-            scoreButtons.Add(btYahtzee);
-            scoreButtons.Add(btChance);
-            */
+            scoreButtons = new ButtonScore[13] {
+                btScoreUpper1,
+                btScoreUpper2,
+                btScoreUpper3,
+                btScoreUpper4,
+                btScoreUpper5,
+                btScoreUpper6,
+                bt3OfAKind,
+                bt4OfAKind,
+                btSmallStraight,
+                btLargeStraight,
+                btFullHouse,
+                btYahtzee,
+                btChance
+            };
         }
 
         private void LoadGridViewColumns(int currentAmountOfPlayers, int toAdd)
@@ -135,7 +100,7 @@ namespace Yahtzee
         {
             gameStarted = false;
             gameFinished = false;
-            Game = new Yahtzee();
+            Game = new YahtzeeInstance();
             UpdateDice(new int?[5]);
             ResetGridView();
         }
@@ -143,7 +108,7 @@ namespace Yahtzee
         {
             gameStarted = false;
             gameFinished = false;
-            Game = new Yahtzee(Game.NrOfPlayers);
+            Game = new YahtzeeInstance(Game.NrOfPlayers);
             UpdateDice(new int?[5]);
             ResetGridView();
             DisableCheckBoxes();
@@ -151,31 +116,31 @@ namespace Yahtzee
 
         private void DisableCheckBoxes()
         {
-            foreach (KeyValuePair<int, Tuple<PictureBox, CheckBox>> dieControlPair in dieControls)
+            foreach (DieControl dieControl in dieControls)
             {
-                dieControlPair.Value.Item2.Enabled = false;
+                dieControl.Enabled = false;
             }
         }
 
         private void EnableCheckBoxes()
         {
-            foreach (KeyValuePair<int, Tuple<PictureBox, CheckBox>> dieControlPair in dieControls)
+            foreach (DieControl dieControl in dieControls)
             {
-                dieControlPair.Value.Item2.Enabled = true;
+                dieControl.Enabled = true;
             }
         }
 
         private void ResetCheckBoxes()
         {
-            foreach (KeyValuePair<int, Tuple<PictureBox, CheckBox>> dieControlPair in dieControls)
+            foreach(DieControl dieControl in dieControls)
             {
-                dieControlPair.Value.Item2.Checked = false;
+                dieControl.Checked = false;
             }
         }
 
         private void EnableScoreButtons()
         {
-            foreach(Button button in scoreButtons)
+            foreach(ButtonScore button in scoreButtons)
             {
                 button.Enabled = true;
             }
@@ -183,7 +148,7 @@ namespace Yahtzee
 
         private void ResetButtons()
         {
-            foreach(Button button in scoreButtons)
+            foreach(ButtonScore button in scoreButtons)
             {
                 button.Enabled = false;
             }
@@ -193,7 +158,7 @@ namespace Yahtzee
 
         private void SetScoreButtons()
         {
-            for (int i = 0; i < scoreButtons.Count; i++)
+            for (int i = 0; i < scoreButtons.Count(); i++)
             { 
                 scoreButtons[i].Enabled = ((Game.Scores[Game.CurrentPlayer][i] == null) || ((i + 1) == (int)ScoreType.YAHTZEE));
             }
@@ -234,11 +199,11 @@ namespace Yahtzee
                 {
                     if (diceToRoll[i2])
                     {
-                        PictureBox pbDie = dieControls[i2 + 1].Item1;
-                        pbDie.Image = imageListDice.Images["die_" + random.Next(1, 7)];
-                        if (pbDie.Image == null)
+                        DieControl dieControl = dieControls[i2];
+                        dieControl.Image = imageListDice.Images["die_" + random.Next(1, 7)];
+                        if (dieControl.Image == null)
                         {
-                            pbDie.Image = imageListDice.Images["die_empty"];
+                            dieControl.Image = imageListDice.Images["die_empty"];
                         }
                     }
                 }
@@ -251,11 +216,11 @@ namespace Yahtzee
         {
             for (int i = 0; i < 5; i++)
             {
-                PictureBox pbDie = dieControls[i + 1].Item1;
-                pbDie.Image = imageListDice.Images["die_" + dice[i]];
-                if (pbDie.Image == null)
+                DieControl dieControl = dieControls[i];
+                dieControl.Image = imageListDice.Images["die_" + dice[i]];
+                if (dieControl.Image == null)
                 {
-                    pbDie.Image = imageListDice.Images["die_empty"];
+                    dieControl.Image = imageListDice.Images["die_empty"];
                 }
             }
         }
@@ -371,7 +336,7 @@ namespace Yahtzee
                 bool[] diceToRoll = new bool[5];
                 for (int i = 0; i < 5; i++)
                 {
-                    diceToRoll[i] = !dieControls[i + 1].Item2.Checked;
+                    diceToRoll[i] = !dieControls[i].Checked;
                 }
                 ResetButtons();
                 btRoll.Enabled = false;
@@ -393,8 +358,6 @@ namespace Yahtzee
 
         private void btScore_Click(object sender, EventArgs e)
         {
-            // TO-DO
-            /*
             if(sender is ButtonScore)
             {
                 ScoreType scoreType = ((ButtonScore)sender).ScoreType;
@@ -408,7 +371,6 @@ namespace Yahtzee
                     EndTurn();
                 }
             }
-            */
         }
     }
 }
