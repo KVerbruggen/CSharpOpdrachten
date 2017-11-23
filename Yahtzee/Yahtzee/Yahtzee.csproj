@@ -85,6 +85,12 @@
     <Compile Include="ButtonScore.Designer.cs">
       <DependentUpon>ButtonScore.cs</DependentUpon>
     </Compile>
+    <Compile Include="DieControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DieControl.Designer.cs">
+      <DependentUpon>DieControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormYahtzee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,10 +99,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScoreType.cs" />
-    <Compile Include="Yahtzee.cs" />
+    <Compile Include="YahtzeeInstance.cs" />
     <EmbeddedResource Include="ButtonScore.resx">
       <DependentUpon>ButtonScore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DieControl.resx">
+      <DependentUpon>DieControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormYahtzee.resx">
       <DependentUpon>FormYahtzee.cs</DependentUpon>

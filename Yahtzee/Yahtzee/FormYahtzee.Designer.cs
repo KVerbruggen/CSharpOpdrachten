@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,7 +38,6 @@
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addPlayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removePlayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageListDice = new System.Windows.Forms.ImageList(this.components);
             this.dataGridViewScore = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanelDice = new System.Windows.Forms.FlowLayoutPanel();
             this.btRoll = new System.Windows.Forms.Button();
@@ -46,6 +45,19 @@
             this.lblLower = new System.Windows.Forms.Label();
             this.lblTotalScore = new System.Windows.Forms.Label();
             this.btScoreUpper1 = new Yahtzee.ButtonScore();
+            this.btScoreUpper2 = new Yahtzee.ButtonScore();
+            this.btScoreUpper3 = new Yahtzee.ButtonScore();
+            this.btScoreUpper4 = new Yahtzee.ButtonScore();
+            this.btScoreUpper5 = new Yahtzee.ButtonScore();
+            this.btScoreUpper6 = new Yahtzee.ButtonScore();
+            this.bt3OfAKind = new Yahtzee.ButtonScore();
+            this.bt4OfAKind = new Yahtzee.ButtonScore();
+            this.btSmallStraight = new Yahtzee.ButtonScore();
+            this.btLargeStraight = new Yahtzee.ButtonScore();
+            this.btFullHouse = new Yahtzee.ButtonScore();
+            this.btYahtzee = new Yahtzee.ButtonScore();
+            this.btChance = new Yahtzee.ButtonScore();
+            this.imageListDice = new System.Windows.Forms.ImageList(this.components);
             this.menuStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewScore)).BeginInit();
             this.SuspendLayout();
@@ -116,12 +128,6 @@
             this.removePlayerToolStripMenuItem.Text = "Remove Player";
             this.removePlayerToolStripMenuItem.Click += new System.EventHandler(this.removePlayerToolStripMenuItem_Click);
             // 
-            // imageListDice
-            // 
-            this.imageListDice.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageListDice.ImageSize = new System.Drawing.Size(50, 50);
-            this.imageListDice.TransparentColor = System.Drawing.Color.Transparent;
-            // 
             // dataGridViewScore
             // 
             this.dataGridViewScore.AllowUserToAddRows = false;
@@ -129,14 +135,14 @@
             this.dataGridViewScore.AllowUserToResizeColumns = false;
             this.dataGridViewScore.AllowUserToResizeRows = false;
             this.dataGridViewScore.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewScore.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewScore.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewScore.Enabled = false;
             this.dataGridViewScore.Location = new System.Drawing.Point(103, 134);
             this.dataGridViewScore.MultiSelect = false;
@@ -204,9 +210,149 @@
             this.btScoreUpper1.BackColor = System.Drawing.Color.Transparent;
             this.btScoreUpper1.Location = new System.Drawing.Point(16, 179);
             this.btScoreUpper1.Name = "btScoreUpper1";
+            this.btScoreUpper1.ScoreType = Yahtzee.ScoreType.UPPERONE;
             this.btScoreUpper1.Size = new System.Drawing.Size(82, 23);
             this.btScoreUpper1.TabIndex = 22;
             this.btScoreUpper1.Text = "1";
+            this.btScoreUpper1.Click += new System.EventHandler(this.btScore_Click);
+            // 
+            // btScoreUpper2
+            // 
+            this.btScoreUpper2.BackColor = System.Drawing.Color.Transparent;
+            this.btScoreUpper2.Location = new System.Drawing.Point(16, 201);
+            this.btScoreUpper2.Name = "btScoreUpper2";
+            this.btScoreUpper2.ScoreType = Yahtzee.ScoreType.UPPERTWO;
+            this.btScoreUpper2.Size = new System.Drawing.Size(82, 23);
+            this.btScoreUpper2.TabIndex = 23;
+            this.btScoreUpper2.Text = "2";
+            this.btScoreUpper2.Click += new System.EventHandler(this.btScore_Click);
+            // 
+            // btScoreUpper3
+            // 
+            this.btScoreUpper3.BackColor = System.Drawing.Color.Transparent;
+            this.btScoreUpper3.Location = new System.Drawing.Point(16, 223);
+            this.btScoreUpper3.Name = "btScoreUpper3";
+            this.btScoreUpper3.ScoreType = Yahtzee.ScoreType.UPPERTHREE;
+            this.btScoreUpper3.Size = new System.Drawing.Size(82, 23);
+            this.btScoreUpper3.TabIndex = 24;
+            this.btScoreUpper3.Text = "3";
+            this.btScoreUpper3.Click += new System.EventHandler(this.btScore_Click);
+            // 
+            // btScoreUpper4
+            // 
+            this.btScoreUpper4.BackColor = System.Drawing.Color.Transparent;
+            this.btScoreUpper4.Location = new System.Drawing.Point(16, 245);
+            this.btScoreUpper4.Name = "btScoreUpper4";
+            this.btScoreUpper4.ScoreType = Yahtzee.ScoreType.UPPERFOUR;
+            this.btScoreUpper4.Size = new System.Drawing.Size(82, 23);
+            this.btScoreUpper4.TabIndex = 25;
+            this.btScoreUpper4.Text = "4";
+            this.btScoreUpper4.Click += new System.EventHandler(this.btScore_Click);
+            // 
+            // btScoreUpper5
+            // 
+            this.btScoreUpper5.BackColor = System.Drawing.Color.Transparent;
+            this.btScoreUpper5.Location = new System.Drawing.Point(16, 267);
+            this.btScoreUpper5.Name = "btScoreUpper5";
+            this.btScoreUpper5.ScoreType = Yahtzee.ScoreType.UPPERFIVE;
+            this.btScoreUpper5.Size = new System.Drawing.Size(82, 23);
+            this.btScoreUpper5.TabIndex = 26;
+            this.btScoreUpper5.Text = "5";
+            this.btScoreUpper5.Click += new System.EventHandler(this.btScore_Click);
+            // 
+            // btScoreUpper6
+            // 
+            this.btScoreUpper6.BackColor = System.Drawing.Color.Transparent;
+            this.btScoreUpper6.Location = new System.Drawing.Point(16, 289);
+            this.btScoreUpper6.Name = "btScoreUpper6";
+            this.btScoreUpper6.ScoreType = Yahtzee.ScoreType.UPPERSIX;
+            this.btScoreUpper6.Size = new System.Drawing.Size(82, 23);
+            this.btScoreUpper6.TabIndex = 27;
+            this.btScoreUpper6.Text = "6";
+            this.btScoreUpper6.Click += new System.EventHandler(this.btScore_Click);
+            // 
+            // bt3OfAKind
+            // 
+            this.bt3OfAKind.BackColor = System.Drawing.Color.Transparent;
+            this.bt3OfAKind.Location = new System.Drawing.Point(16, 333);
+            this.bt3OfAKind.Name = "bt3OfAKind";
+            this.bt3OfAKind.ScoreType = Yahtzee.ScoreType.THREEOFAKIND;
+            this.bt3OfAKind.Size = new System.Drawing.Size(82, 23);
+            this.bt3OfAKind.TabIndex = 28;
+            this.bt3OfAKind.Text = "3 of a Kind";
+            this.bt3OfAKind.Click += new System.EventHandler(this.btScore_Click);
+            // 
+            // bt4OfAKind
+            // 
+            this.bt4OfAKind.BackColor = System.Drawing.Color.Transparent;
+            this.bt4OfAKind.Location = new System.Drawing.Point(16, 355);
+            this.bt4OfAKind.Name = "bt4OfAKind";
+            this.bt4OfAKind.ScoreType = Yahtzee.ScoreType.FOUROFAKIND;
+            this.bt4OfAKind.Size = new System.Drawing.Size(82, 23);
+            this.bt4OfAKind.TabIndex = 29;
+            this.bt4OfAKind.Text = "4 of a Kind";
+            this.bt4OfAKind.Click += new System.EventHandler(this.btScore_Click);
+            // 
+            // btSmallStraight
+            // 
+            this.btSmallStraight.BackColor = System.Drawing.Color.Transparent;
+            this.btSmallStraight.Location = new System.Drawing.Point(16, 377);
+            this.btSmallStraight.Name = "btSmallStraight";
+            this.btSmallStraight.ScoreType = Yahtzee.ScoreType.SMALLSTRAIGHT;
+            this.btSmallStraight.Size = new System.Drawing.Size(82, 23);
+            this.btSmallStraight.TabIndex = 30;
+            this.btSmallStraight.Text = "Small Straight";
+            this.btSmallStraight.Click += new System.EventHandler(this.btScore_Click);
+            // 
+            // btLargeStraight
+            // 
+            this.btLargeStraight.BackColor = System.Drawing.Color.Transparent;
+            this.btLargeStraight.Location = new System.Drawing.Point(16, 399);
+            this.btLargeStraight.Name = "btLargeStraight";
+            this.btLargeStraight.ScoreType = Yahtzee.ScoreType.LARGESTRAIGHT;
+            this.btLargeStraight.Size = new System.Drawing.Size(82, 23);
+            this.btLargeStraight.TabIndex = 31;
+            this.btLargeStraight.Text = "Large Straight";
+            this.btLargeStraight.Click += new System.EventHandler(this.btScore_Click);
+            // 
+            // btFullHouse
+            // 
+            this.btFullHouse.BackColor = System.Drawing.Color.Transparent;
+            this.btFullHouse.Location = new System.Drawing.Point(16, 421);
+            this.btFullHouse.Name = "btFullHouse";
+            this.btFullHouse.ScoreType = Yahtzee.ScoreType.FULLHOUSE;
+            this.btFullHouse.Size = new System.Drawing.Size(82, 23);
+            this.btFullHouse.TabIndex = 32;
+            this.btFullHouse.Text = "Full House";
+            this.btFullHouse.Click += new System.EventHandler(this.btScore_Click);
+            // 
+            // btYahtzee
+            // 
+            this.btYahtzee.BackColor = System.Drawing.Color.Transparent;
+            this.btYahtzee.Location = new System.Drawing.Point(16, 443);
+            this.btYahtzee.Name = "btYahtzee";
+            this.btYahtzee.ScoreType = Yahtzee.ScoreType.YAHTZEE;
+            this.btYahtzee.Size = new System.Drawing.Size(82, 23);
+            this.btYahtzee.TabIndex = 33;
+            this.btYahtzee.Text = "Yahtzee";
+            this.btYahtzee.Click += new System.EventHandler(this.btScore_Click);
+            // 
+            // btChance
+            // 
+            this.btChance.BackColor = System.Drawing.Color.Transparent;
+            this.btChance.Location = new System.Drawing.Point(16, 465);
+            this.btChance.Name = "btChance";
+            this.btChance.ScoreType = Yahtzee.ScoreType.CHANCE;
+            this.btChance.Size = new System.Drawing.Size(82, 23);
+            this.btChance.TabIndex = 34;
+            this.btChance.Text = "Chance";
+            this.btChance.Click += new System.EventHandler(this.btScore_Click);
+            // 
+            // imageListDice
+            // 
+            this.imageListDice.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageListDice.ImageSize = new System.Drawing.Size(50, 50);
+            this.imageListDice.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // FormYahtzee
             // 
@@ -215,6 +361,18 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(493, 520);
+            this.Controls.Add(this.btChance);
+            this.Controls.Add(this.btYahtzee);
+            this.Controls.Add(this.btFullHouse);
+            this.Controls.Add(this.btLargeStraight);
+            this.Controls.Add(this.btSmallStraight);
+            this.Controls.Add(this.bt4OfAKind);
+            this.Controls.Add(this.bt3OfAKind);
+            this.Controls.Add(this.btScoreUpper6);
+            this.Controls.Add(this.btScoreUpper5);
+            this.Controls.Add(this.btScoreUpper4);
+            this.Controls.Add(this.btScoreUpper3);
+            this.Controls.Add(this.btScoreUpper2);
             this.Controls.Add(this.btScoreUpper1);
             this.Controls.Add(this.menuStripMain);
             this.Controls.Add(this.flowLayoutPanelDice);
@@ -225,6 +383,7 @@
             this.Controls.Add(this.dataGridViewScore);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStripMain;
+            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(509, 534);
             this.Name = "FormYahtzee";
             this.Text = "Yahtzee";
@@ -242,7 +401,6 @@
         private System.Windows.Forms.ToolStripMenuItem gameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newGameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
-        private System.Windows.Forms.ImageList imageListDice;
         private System.Windows.Forms.DataGridView dataGridViewScore;
         private System.Windows.Forms.ToolStripMenuItem matchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addPlayerToolStripMenuItem;
@@ -253,7 +411,20 @@
         private System.Windows.Forms.Label lblUpper;
         private System.Windows.Forms.Label lblLower;
         private System.Windows.Forms.Label lblTotalScore;
-        private Yahtzee.ButtonScore btScoreUpper1;
+        private ButtonScore btScoreUpper1;
+        private ButtonScore btScoreUpper2;
+        private ButtonScore btScoreUpper3;
+        private ButtonScore btScoreUpper4;
+        private ButtonScore btScoreUpper5;
+        private ButtonScore btScoreUpper6;
+        private ButtonScore bt3OfAKind;
+        private ButtonScore bt4OfAKind;
+        private ButtonScore btSmallStraight;
+        private ButtonScore btLargeStraight;
+        private ButtonScore btFullHouse;
+        private ButtonScore btYahtzee;
+        private ButtonScore btChance;
+        private System.Windows.Forms.ImageList imageListDice;
     }
 }
 
