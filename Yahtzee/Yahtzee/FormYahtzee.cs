@@ -93,6 +93,8 @@ namespace Yahtzee
 
         private void LoadButtons()
         {
+            // TO-DO
+            /*
             scoreButtons.Add(btUpper1);
             scoreButtons.Add(btUpper2);
             scoreButtons.Add(btUpper3);
@@ -106,6 +108,7 @@ namespace Yahtzee
             scoreButtons.Add(btFullHouse);
             scoreButtons.Add(btYahtzee);
             scoreButtons.Add(btChance);
+            */
         }
 
         private void LoadGridViewColumns(int currentAmountOfPlayers, int toAdd)
@@ -390,6 +393,8 @@ namespace Yahtzee
 
         private void btScore_Click(object sender, EventArgs e)
         {
+            // TO-DO
+            /*
             if(sender is ButtonScore)
             {
                 ScoreType scoreType = ((ButtonScore)sender).ScoreType;
@@ -403,6 +408,7 @@ namespace Yahtzee
                     EndTurn();
                 }
             }
+            */
         }
     }
 }
