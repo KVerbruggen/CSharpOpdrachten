@@ -63,6 +63,7 @@
             this.Controls.Add(this.btStartTest);
             this.Controls.Add(this.btOpenOverview);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FormMenu";
             this.Text = "Flags of the World";
             this.ResumeLayout(false);

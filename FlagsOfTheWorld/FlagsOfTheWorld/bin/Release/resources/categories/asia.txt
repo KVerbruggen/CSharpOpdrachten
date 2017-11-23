@@ -1,0 +1,3 @@
+Name: Asia
+Icon: asia.png
+FlagIDs: ae, af, am, az, bd, bh, bn, bt, cn, ge, id, il, in, iq, ir, jo, jp, kg, kh, kp, kr, kw, kz, la, lb, lk, mm, mn, mv, my, np, om, ph, pk, qa, ru, sa, sg, sy, th, tj, tl, tm, tr, tw, uz, vn, ye

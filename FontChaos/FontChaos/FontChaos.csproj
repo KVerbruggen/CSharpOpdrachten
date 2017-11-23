@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C4C4791D-7DC7-43AC-935C-6B6B977565BC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>EncryptApp</RootNamespace>
-    <AssemblyName>EncryptApp</AssemblyName>
+    <RootNamespace>FontChaos</RootNamespace>
+    <AssemblyName>FontChaos</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontChaos", "FontChaos\FontChaos.csproj", "{C4C4791D-7DC7-43AC-935C-6B6B977565BC}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupFontChaos", "SetupFontChaos\SetupFontChaos.vdproj", "{782506E0-8DD2-4258-99F5-0221D42708CE}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupFontChaos", "SetupFontChaos\SetupFontChaos.vdproj", "{AD59E344-C223-49C4-BAE5-5A406C1DB94B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,9 @@ Global
 		{C4C4791D-7DC7-43AC-935C-6B6B977565BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4C4791D-7DC7-43AC-935C-6B6B977565BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4C4791D-7DC7-43AC-935C-6B6B977565BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{782506E0-8DD2-4258-99F5-0221D42708CE}.Debug|Any CPU.ActiveCfg = Debug
-		{782506E0-8DD2-4258-99F5-0221D42708CE}.Debug|Any CPU.Build.0 = Debug
-		{782506E0-8DD2-4258-99F5-0221D42708CE}.Release|Any CPU.ActiveCfg = Release
-		{782506E0-8DD2-4258-99F5-0221D42708CE}.Release|Any CPU.Build.0 = Release
+		{AD59E344-C223-49C4-BAE5-5A406C1DB94B}.Debug|Any CPU.ActiveCfg = Debug
+		{AD59E344-C223-49C4-BAE5-5A406C1DB94B}.Release|Any CPU.ActiveCfg = Release
+		{AD59E344-C223-49C4-BAE5-5A406C1DB94B}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

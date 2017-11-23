@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlagsOfTheWorld", "FlagsOfTheWorld\FlagsOfTheWorld.csproj", "{273817E5-88A3-4568-8BFB-B99B996BE499}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupFlagsOfTheWorld", "SetupFlagsOfTheWorld\SetupFlagsOfTheWorld.vdproj", "{266900A8-80BA-42DA-904E-B62B99D71BB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,9 @@ Global
 		{273817E5-88A3-4568-8BFB-B99B996BE499}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{273817E5-88A3-4568-8BFB-B99B996BE499}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{273817E5-88A3-4568-8BFB-B99B996BE499}.Release|Any CPU.Build.0 = Release|Any CPU
+		{266900A8-80BA-42DA-904E-B62B99D71BB2}.Debug|Any CPU.ActiveCfg = Debug
+		{266900A8-80BA-42DA-904E-B62B99D71BB2}.Release|Any CPU.ActiveCfg = Release
+		{266900A8-80BA-42DA-904E-B62B99D71BB2}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

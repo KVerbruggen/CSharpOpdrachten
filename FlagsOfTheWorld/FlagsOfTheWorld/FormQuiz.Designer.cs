@@ -166,6 +166,7 @@
             this.Controls.Add(this.btBack);
             this.Controls.Add(this.pbFlag);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FormQuiz";
             this.Text = "Flags of the World";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormQuiz_FormClosing);

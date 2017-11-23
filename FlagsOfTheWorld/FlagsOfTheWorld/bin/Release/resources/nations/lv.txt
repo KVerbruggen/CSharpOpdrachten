@@ -1,0 +1,2 @@
+ID: lv
+Name: Latvia
