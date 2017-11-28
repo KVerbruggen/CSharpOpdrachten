@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rekenmachine", "Rekenmachine\Rekenmachine.csproj", "{54744A22-1BB9-408A-B149-16E67BF483E2}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupRekenmachine", "SetupRekenmachine\SetupRekenmachine.vdproj", "{0FEB639F-865E-4420-A470-A22DC2F64F62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,9 @@ Global
 		{54744A22-1BB9-408A-B149-16E67BF483E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54744A22-1BB9-408A-B149-16E67BF483E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54744A22-1BB9-408A-B149-16E67BF483E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FEB639F-865E-4420-A470-A22DC2F64F62}.Debug|Any CPU.ActiveCfg = Debug
+		{0FEB639F-865E-4420-A470-A22DC2F64F62}.Release|Any CPU.ActiveCfg = Release
+		{0FEB639F-865E-4420-A470-A22DC2F64F62}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

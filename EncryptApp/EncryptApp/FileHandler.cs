@@ -9,18 +9,18 @@ namespace EncryptApp
 {
     public static class FileHandler
     {
-        public static string ReadFile(string filelocation)
+        public static byte[] ReadFile(string filelocation)
         {
             if (File.Exists(filelocation))
             {
-                return File.ReadAllText(filelocation);
+                return File.ReadAllBytes(filelocation);
             }
-            return String.Empty;
+            return null;
         }
 
-        public static void WriteFile(string filelocation, string data)
+        public static void WriteFile(string filelocation, byte[] data)
         {
-            File.WriteAllText(filelocation, data);
+            File.WriteAllBytes(filelocation, data);
         }
     }
 }

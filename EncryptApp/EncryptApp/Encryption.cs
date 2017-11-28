@@ -8,14 +8,16 @@ namespace EncryptApp
 {
     public enum Algorithms
     {
-        AES
+        AES128,
+        AES256
     }
 
     public static class Encryption
     {
-        private static Algorithm[] encryptionAlgorithms = new Algorithm[]
+        public static Algorithm[] encryptionAlgorithms = new Algorithm[2]
         {
-            new AES()
+            new AES(128),
+            new AES(256)
         };
 
         public static List<string> GetFileExtensions()
@@ -23,21 +25,34 @@ namespace EncryptApp
             List<string> extensions = new List<string>();
             foreach (Algorithm algorithm in encryptionAlgorithms)
             {
-                extensions.Add(algorithm.FileExtension);
+                if (!extensions.Contains(algorithm.FileExtension))
+                {
+                    extensions.Add(algorithm.FileExtension);
+                }
             }
             return extensions;
         }
 
-        public static string Encrypt(Algorithms algorithm, string input, string key)
+        public static byte[] Encrypt(Algorithms algorithm, byte[] input, byte[] key)
         {
-            // TO-DO
-            return encryptionAlgorithms[(int)algorithm].Encrypt(input, key);
+            Algorithm[] algorithms = Encryption.encryptionAlgorithms;
+            Algorithm algorithmObject = algorithms[(int)algorithm];
+            return algorithmObject.Encrypt(input, key);
         }
 
-        public static string Decrypt(Algorithms algorithm, string input, string key)
+        public static byte[] Decrypt(Algorithms algorithm, byte[] input, byte[] key)
         {
-            // TO-DO
             return encryptionAlgorithms[(int)algorithm].Decrypt(input, key);
+        }
+
+        public static bool SaveToFile(string savelocation, byte[] content)
+        {
+            bool fileFound = savelocation != null && savelocation != String.Empty;
+            if (fileFound)
+            {
+                FileHandler.WriteFile(savelocation, content);
+            }
+            return fileFound;
         }
     }
 }

@@ -12,6 +12,8 @@ namespace EncryptApp
 {
     public partial class FormEncryptApp : Form
     {
+        private Encoding encoding = Encoding.UTF8;
+
         public FormEncryptApp()
         {
             InitializeComponent();
@@ -61,6 +63,16 @@ namespace EncryptApp
             }
         }
 
+        private byte[] GetBytes(string input)
+        {
+            return encoding.GetBytes(input);
+        }
+
+        private string GetString(byte[] input)
+        {
+            return encoding.GetString(input);
+        }
+
         private void Form1_Resize(object sender, EventArgs e)
         {
             cbEncryptionAlgorithms.Width = tbInput.Width - 56;
@@ -69,69 +81,107 @@ namespace EncryptApp
 
         private void btEncrypt_Click(object sender, EventArgs e)
         {
-            tbOutput.Text = Encryption.Encrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, tbInput.Text, tbKey.Text);
+            try
+            {
+                tbOutput.Text = GetString(Encryption.Encrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, GetBytes(tbInput.Text), GetBytes(tbKey.Text)));
+            }
+            catch (System.Security.Cryptography.CryptographicException)
+            {
+                MessageBox.Show("Input could not be encrypted");
+            }
         }
 
         private void btDecrypt_Click(object sender, EventArgs e)
         {
-            tbOutput.Text = Encryption.Decrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, tbInput.Text, tbKey.Text);
+            try
+            {
+                tbOutput.Text = GetString(Encryption.Decrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, GetBytes(tbInput.Text), GetBytes(tbKey.Text)));
+            }
+            catch (System.Security.Cryptography.CryptographicException)
+            {
+                MessageBox.Show("Input could not be decrypted");
+            }
         }
 
         private void btEncryptToFile_Click(object sender, EventArgs e)
         {
-            string encrypted = Encryption.Encrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, tbInput.Text, tbKey.Text);
-            string savelocation = SaveFileLocation();
-            if (savelocation == null || savelocation == String.Empty)
+            try
             {
-                return;
+                byte[] input = GetBytes(tbInput.Text);
+                byte[] key = GetBytes(tbKey.Text);
+                byte[] encrypted = Encryption.Encrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, input, key);
+                string savelocation = SaveFileLocation();
+                if (Encryption.SaveToFile(savelocation, encrypted))
+                {
+                    MessageBox.Show("Encrypted file saved at " + savelocation);
+                }
             }
-            FileHandler.WriteFile(SaveFileLocation(), encrypted);
-            MessageBox.Show("Encrypted file saved at " + savelocation);
-        }
-
-        private void btEncryptFile_Click(object sender, EventArgs e)
-        {
-            string fileLocation = OpenFileLocation();
-            if (fileLocation == null || fileLocation == String.Empty)
+            catch (System.Security.Cryptography.CryptographicException)
             {
-                return;
-            }
-            string encrypted = Encryption.Encrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, FileHandler.ReadFile(fileLocation), tbKey.Text);
-            string savelocation = SaveFileLocation();
-            if (savelocation != null && savelocation != String.Empty)
-            {
-                FileHandler.WriteFile(savelocation, encrypted);
-                MessageBox.Show("Encrypted file saved at " + savelocation);
+                MessageBox.Show("Input could not be encrypted");
             }
         }
 
         private void btDecryptToFile_Click(object sender, EventArgs e)
         {
-            string decrypted = Encryption.Decrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, tbInput.Text, tbKey.Text);
-            string savelocation = SaveFileLocation();
-            if (savelocation != null && savelocation != String.Empty)
+            try
             {
-                FileHandler.WriteFile(savelocation, decrypted);
-                MessageBox.Show("Decrypted file saved at " + savelocation);
+                byte[] decrypted = Encryption.Decrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, GetBytes(tbInput.Text), GetBytes(tbKey.Text));
+                string savelocation = SaveFileLocation();
+                if (Encryption.SaveToFile(savelocation, decrypted))
+                {
+                    MessageBox.Show("Decrypted file saved at " + savelocation);
+                }
+            }
+            catch (System.Security.Cryptography.CryptographicException)
+            {
+                MessageBox.Show("Input could not be decrypted");
             }
 
         }
 
+        private void btEncryptFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string fileLocation = OpenFileLocation();
+                if (fileLocation == null || fileLocation == String.Empty)
+                {
+                    return;
+                }
+                byte[] encrypted = Encryption.Encrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, FileHandler.ReadFile(fileLocation), GetBytes(tbKey.Text));
+                string savelocation = SaveFileLocation();
+                if (Encryption.SaveToFile(savelocation, encrypted))
+                {
+                    MessageBox.Show("Encrypted file saved at " + savelocation);
+                }
+            }
+            catch (System.Security.Cryptography.CryptographicException)
+            {
+                MessageBox.Show("Input could not be encrypted");
+            }
+        }
+
         private void btDecryptFile_Click(object sender, EventArgs e)
         {
-            string fileLocation = OpenFileLocation();
-            if (fileLocation == null || fileLocation == String.Empty)
+            try
             {
-                return;
+                string fileLocation = OpenFileLocation();
+                if (fileLocation == null || fileLocation == String.Empty)
+                {
+                    return;
+                }
+                byte[] decrypted = Encryption.Decrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, FileHandler.ReadFile(fileLocation), GetBytes(tbKey.Text));
+                string savelocation = SaveFileLocation();
+                if (Encryption.SaveToFile(savelocation, decrypted))
+                {
+                    MessageBox.Show("Decrypted file saved at " + savelocation);
+                }
             }
-            string decrypted = Encryption.Decrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, FileHandler.ReadFile(fileLocation), tbKey.Text);
-            string savelocation = SaveFileLocation();
-            if (savelocation == null || savelocation == String.Empty)
+            catch (System.Security.Cryptography.CryptographicException)
             {
-                return;
+                MessageBox.Show("Input could not be decrypted");
             }
-            FileHandler.WriteFile(savelocation, decrypted);
-            MessageBox.Show("Decrypted file saved at " + savelocation);
         }
 
         private void btLoadKeyFromFile_Click(object sender, EventArgs e)
@@ -141,7 +191,7 @@ namespace EncryptApp
             {
                 return;
             }
-            tbKey.Text = FileHandler.ReadFile(fileLocation);
+            tbKey.Text = GetString(FileHandler.ReadFile(fileLocation));
         }
     }
 }

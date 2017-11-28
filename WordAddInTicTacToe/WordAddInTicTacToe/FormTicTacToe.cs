@@ -16,7 +16,7 @@ namespace WordAddInTicTacToe
 
         private BtTicTacToe[] Buttons = new BtTicTacToe[9];
 
-        private int lineRotate = 0;
+        // private int lineRotate = 0;
 
         public FormTicTacToe()
         {
