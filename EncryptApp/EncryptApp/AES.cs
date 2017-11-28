@@ -11,7 +11,7 @@ namespace EncryptApp
     public class AES : Algorithm
     {
         /*
-         Relatief simpele implementatie van het AES/Rijndael-algoritme
+          AES/Rijndael-algoritme
         */
 
         private int keySize;
