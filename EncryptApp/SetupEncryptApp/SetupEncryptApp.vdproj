@@ -28,13 +28,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D14064B535E2CB77EE472568A62A4511"
+        "OwnerKey" = "8:_DCF57AA6E8704694A2C4D9A9D8CB3E91"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_DCF57AA6E8704694A2C4D9A9D8CB3E91"
+        "OwnerKey" = "8:_D14064B535E2CB77EE472568A62A4511"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -86,6 +86,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -123,6 +131,11 @@
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
+                    "_D14064B535E2CB77EE472568A62A4511"
+                    {
+                    "Name" = "8:System.Net.Http.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
@@ -198,15 +211,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:EncryptApp"
-        "ProductCode" = "8:{790C706F-A69F-4FDE-A6FC-7530341B4350}"
-        "PackageCode" = "8:{3D163AA9-5747-4C34-94D6-285B4E2A0CC0}"
+        "ProductCode" = "8:{2041F4D0-837A-4A21-8D90-0E929A9189E1}"
+        "PackageCode" = "8:{3EF2B12E-33BD-4CED-B4F7-CA345D8D7EE4}"
         "UpgradeCode" = "8:{9B24254D-DD97-4448-B567-B2E003505506}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.2.0"
         "Manufacturer" = "8:KVerbruggen"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

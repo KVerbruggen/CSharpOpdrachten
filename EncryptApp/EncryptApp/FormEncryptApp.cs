@@ -17,7 +17,7 @@ namespace EncryptApp
         public FormEncryptApp()
         {
             InitializeComponent();
-            this.cbEncryptionAlgorithms.DataSource = Enum.GetValues(typeof(Algorithms));
+            this.cbEncryptionAlgorithms.DataSource = Encryption.encryptionAlgorithms;
             this.tbInput.Focus();
             this.tbInput.Select();
         }
@@ -73,6 +73,18 @@ namespace EncryptApp
             return encoding.GetString(input);
         }
 
+        private byte[] GetKey()
+        {
+            if (((Algorithm)cbEncryptionAlgorithms.SelectedValue).Name == "ROT-n" && Int32.TryParse(tbKey.Text, out int intKey))
+            {
+                return new byte[] { (byte)intKey };
+            }
+            else
+            {
+                return GetBytes(tbKey.Text);
+            }
+        }
+
         private void Form1_Resize(object sender, EventArgs e)
         {
             cbEncryptionAlgorithms.Width = tbInput.Width - 56;
@@ -83,7 +95,8 @@ namespace EncryptApp
         {
             try
             {
-                tbOutput.Text = GetString(Encryption.Encrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, GetBytes(tbInput.Text), GetBytes(tbKey.Text)));
+                byte[] key = GetKey();
+                tbOutput.Text = GetString(Encryption.Encrypt(((Algorithm)cbEncryptionAlgorithms.SelectedValue), GetBytes(tbInput.Text), key));
             }
             catch (System.Security.Cryptography.CryptographicException)
             {
@@ -95,7 +108,8 @@ namespace EncryptApp
         {
             try
             {
-                tbOutput.Text = GetString(Encryption.Decrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, GetBytes(tbInput.Text), GetBytes(tbKey.Text)));
+                byte[] key = GetKey();
+                tbOutput.Text = GetString(Encryption.Decrypt(((Algorithm)cbEncryptionAlgorithms.SelectedValue), GetBytes(tbInput.Text), key));
             }
             catch (System.Security.Cryptography.CryptographicException)
             {
@@ -107,9 +121,8 @@ namespace EncryptApp
         {
             try
             {
-                byte[] input = GetBytes(tbInput.Text);
-                byte[] key = GetBytes(tbKey.Text);
-                byte[] encrypted = Encryption.Encrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, input, key);
+                byte[] key = GetKey();
+                byte[] encrypted = Encryption.Encrypt(((Algorithm)cbEncryptionAlgorithms.SelectedValue), GetBytes(tbInput.Text), key);
                 string savelocation = SaveFileLocation();
                 if (Encryption.SaveToFile(savelocation, encrypted))
                 {
@@ -126,7 +139,8 @@ namespace EncryptApp
         {
             try
             {
-                byte[] decrypted = Encryption.Decrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, GetBytes(tbInput.Text), GetBytes(tbKey.Text));
+                byte[] key = GetKey();
+                byte[] decrypted = Encryption.Decrypt((Algorithm)cbEncryptionAlgorithms.SelectedValue, GetBytes(tbInput.Text), key);
                 string savelocation = SaveFileLocation();
                 if (Encryption.SaveToFile(savelocation, decrypted))
                 {
@@ -149,7 +163,8 @@ namespace EncryptApp
                 {
                     return;
                 }
-                byte[] encrypted = Encryption.Encrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, FileHandler.ReadFile(fileLocation), GetBytes(tbKey.Text));
+                byte[] key = GetKey();
+                byte[] encrypted = Encryption.Encrypt((Algorithm)cbEncryptionAlgorithms.SelectedValue, FileHandler.ReadFile(fileLocation), key);
                 string savelocation = SaveFileLocation();
                 if (Encryption.SaveToFile(savelocation, encrypted))
                 {
@@ -171,7 +186,8 @@ namespace EncryptApp
                 {
                     return;
                 }
-                byte[] decrypted = Encryption.Decrypt((Algorithms)cbEncryptionAlgorithms.SelectedValue, FileHandler.ReadFile(fileLocation), GetBytes(tbKey.Text));
+                byte[] key = GetKey();
+                byte[] decrypted = Encryption.Decrypt((Algorithm)cbEncryptionAlgorithms.SelectedValue, FileHandler.ReadFile(fileLocation), key);
                 string savelocation = SaveFileLocation();
                 if (Encryption.SaveToFile(savelocation, decrypted))
                 {
@@ -180,7 +196,7 @@ namespace EncryptApp
             }
             catch (System.Security.Cryptography.CryptographicException)
             {
-                MessageBox.Show("Input could not be decrypted");
+                MessageBox.Show("Input could not be encrypted");
             }
         }
 

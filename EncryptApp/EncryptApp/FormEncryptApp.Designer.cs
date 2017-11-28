@@ -75,6 +75,7 @@
             // cbEncryptionAlgorithms
             // 
             this.cbEncryptionAlgorithms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbEncryptionAlgorithms.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEncryptionAlgorithms.FormattingEnabled = true;
             this.cbEncryptionAlgorithms.Location = new System.Drawing.Point(71, 333);
             this.cbEncryptionAlgorithms.Name = "cbEncryptionAlgorithms";

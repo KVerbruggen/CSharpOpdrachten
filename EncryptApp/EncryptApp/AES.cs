@@ -17,8 +17,9 @@ namespace EncryptApp
         private int keySize;
         private int blockSize = 128;
 
-        public AES(int keySize = 128)
+        public AES(string name, int keySize = 128)
         {
+            Name = name;
             this.keySize = keySize;
             FileExtension = "AES Files (*.aes)|*.aes";
         }
