@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Yahtzee.exe" size="89040">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Yahtzee.exe" size="89552">
       <assemblyIdentity name="Yahtzee" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>zzGE+QUEciWCyxuB4SyYWUHhERbbrUMfMqiFKqG2eIk=</dsig:DigestValue>
+        <dsig:DigestValue>uC9LPmZuzOowHX8QHJ+hUJyOXtq20TMSP+Xe6ET0KWA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
