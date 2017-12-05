@@ -65,9 +65,13 @@ namespace Yahtzee
             Dice = new int[5];
             hadYahtzee = new bool[nrOfPlayers];
         }
+
         public int[] RollDice(bool[] diceToRoll = null)
         {
-            diceToRoll = diceToRoll ?? new bool[]{ true, true, true, true, true };
+            if (diceToRoll == null || diceToRoll.Count() != 5)
+            {
+                diceToRoll = diceToRoll ?? new bool[] { true, true, true, true, true };
+            }
             if (!gameStarted)
             {
                 StartGame();
